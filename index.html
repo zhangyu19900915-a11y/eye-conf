@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="2026年国内外眼科学术会议时间、地点、投稿窗口、优惠截止与注册费明细速查">
+<title>2026 眼科会议速查</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f4f6f9;color:#2c3e50;padding:14px 12px 50px}
+.wrap{max-width:760px;margin:0 auto}
+header{border-bottom:3px solid #d4a017;padding-bottom:10px;margin-bottom:10px}
+h1{color:#1a5276;font-size:21px;letter-spacing:1px}
+.sub{color:#7f8c8d;font-size:12px;margin-top:5px;line-height:1.7}
+#hot{background:#fff8e8;border:1px solid #f0d9a0;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.95;margin-bottom:10px;color:#8a6d0b}
+#hot b{color:#b03a2e}
+.bar{background:#fff;border-radius:12px;padding:10px;box-shadow:0 1px 4px rgba(26,82,118,.08);margin-bottom:10px}
+#q{width:100%;padding:9px 12px;font-size:15px;border:1.5px solid #d6e4ee;border-radius:9px;outline:none;color:#2c3e50}
+#q:focus{border-color:#2e86c1}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
+.chip{padding:5px 13px;border-radius:999px;font-size:13px;background:#eef3f7;color:#1a5276;cursor:pointer;user-select:none}
+.chip.on{background:#1a5276;color:#fff}
+#stats{font-size:12px;color:#7f8c8d;margin:0 2px 4px}
+.month{font-size:13px;font-weight:700;color:#d4a017;margin:16px 2px 6px;letter-spacing:2px}
+.card{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:9px;box-shadow:0 1px 4px rgba(26,82,118,.08);display:flex;gap:12px;border-left:4px solid #2e86c1}
+.card.core{border-left-color:#d4a017}
+.card.past{opacity:.62}
+.dt{flex:none;width:56px;text-align:center;padding-top:2px}
+.dt .m{font-size:11px;color:#7f8c8d}
+.dt .d{font-size:19px;font-weight:800;color:#1a5276;line-height:1.25}
+.dt .len{font-size:10.5px;color:#7f8c8d}
+.bd{flex:1;min-width:0}
+.nm{font-size:14.5px;font-weight:600;line-height:1.5}
+.star{color:#d4a017;font-size:12px;font-weight:700}
+.meta{font-size:12.5px;color:#566573;margin-top:4px}
+.badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:2px 9px;border-radius:999px;margin-left:6px;vertical-align:1px}
+.dl{font-size:12.5px;color:#b03a2e;font-weight:700;margin-top:5px;background:#fdf0ee;border-radius:6px;padding:4px 8px;display:inline-block;margin-right:5px}
+.ex{font-size:12px;color:#7f8c8d;margin-top:5px;line-height:1.65}
+.ex .off{color:#aab4bc}
+.go{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:600;color:#fff;background:#1a5276;padding:5px 13px;border-radius:7px;text-decoration:none}
+.fd{margin-top:7px}
+.fd summary{font-size:12.5px;font-weight:600;color:#1a5276;cursor:pointer;user-select:none}
+.fd[open] summary{margin-bottom:5px}
+.ft{overflow-x:auto}
+.fd table{border-collapse:collapse;font-size:11.5px;margin-top:3px;min-width:280px}
+.fd th{background:#eef3f7;color:#1a5276;font-weight:600;padding:4px 8px;text-align:left;white-space:nowrap}
+.fd td{padding:4px 8px;border-bottom:1px solid #eef2f5;white-space:nowrap}
+.fd .f2t{font-size:12px;font-weight:600;color:#566573;margin-top:7px}
+.fd .fn{font-size:11px;color:#95a5a6;margin-top:5px;line-height:1.6;white-space:normal}
+.empty{text-align:center;color:#7f8c8d;padding:40px 0;font-size:14px;background:#fff;border-radius:12px}
+footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top:1px solid #e3e9ef;padding-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>👁 2026 眼科会议速查</h1>
+  <div class="sub">国内外主要眼科/视光学术会议 · 时间地点 · 投稿窗口 · 优惠截止 · 注册费明细 · 数据核实于 2026-06-12，以各会议官网为准</div>
+</header>
+<div id="hot"></div>
+<div class="bar">
+  <input id="q" type="search" placeholder="搜索会议 / 城市 / 国家…">
+  <div class="chips" id="chips"></div>
+</div>
+<div id="stats"></div>
+<div id="list"></div>
+<footer>
+  说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。<br>
+  注册费为各官网当前公布价（2026-06-12 核实），货币与税费以官网结算为准；投稿与注册政策可能调整，行动前请以官网为准。
+</footer>
+</div>
+
+<script>
+var CONFS=[
+ {s:"2026-01-08",e:"2026-01-10",n:"2026“海上之光”眼视光学与视觉科学学术会议暨第十四届“关爱近视·微笑学术交流会”",p:"中国上海",u:"http://smilevision.com.cn",cn:1},
+ {s:"2026-02-05",e:"2026-02-08",a:"APAO 2026",n:"第41届亚太眼科学会大会（APAO 2026）",p:"中国香港",u:"https://2026.apaophth.org/",cn:1,note:"下届 APAO 2027：3月18–21日·新加坡"},
+ {s:"2026-02-19",e:"2026-02-22",n:"第36届美国青光眼协会年会（AGS 2026）",p:"美国加利福尼亚",u:"https://www.americanglaucomasociety.net/meetings-events/annual-meeting"},
+ {s:"2026-03-06",e:"2026-03-08",n:"第30届欧洲白内障与屈光外科医师学会冬季会议（ESCRS Winter Meeting 2026）",p:"芬兰赫尔辛基",u:"https://escrs.org/escrs-annual-events/30th-escrs-winter-meeting"},
+ {s:"2026-03-12",e:"2026-03-15",n:"2026年西部国际近视防控与视觉健康学术会议",p:"中国成都",u:"https://mm.sciconf.cn/cn/minisite/index/33741",cn:1},
+ {s:"2026-03-18",e:"2026-03-22",n:"第51届美国小儿眼科与斜视协会年会（AAPOS 2026）",p:"美国波士顿",u:"https://aapos.org/education-and-events/annual-meeting2026"},
+ {s:"2026-03-20",e:"2026-03-22",n:"第十届眼科学教育大会",p:"中国汕头",u:"http://www.womeneyedoctor.com.cn",cn:1},
+ {s:"2026-03-25",e:"2026-03-26",n:"第4届国际眼科会议（IOC 2026）",p:"新加坡",u:"https://ophthalmology.magnusconferences.com/"},
+ {s:"2026-03-27",e:"2026-03-29",n:"FUJI RETINA 2026",p:"日本京都",u:"https://convention.jtbcom.co.jp/fujiretina/"},
+ {s:"2026-04-09",e:"2026-04-11",a:"COOC 2026",n:"第二十六届国际眼科学学术会议暨第二十六届国际视光学学术会议（COOC 2026）",p:"中国上海",u:"https://mm.sciconf.cn/cn/minisite/index/30986",cn:1},
+ {s:"2026-04-09",e:"2026-04-12",n:"日本眼科学会年会（JOS 2026）",p:"日本福冈",u:"https://www.nichigan.or.jp/english/meetings.html"},
+ {s:"2026-04-10",e:"2026-04-13",a:"ASCRS 2026",n:"美国白内障和屈光手术学会年会（ASCRS 2026）",p:"美国华盛顿",u:"https://annualmeeting.ascrs.org/",note:"下届 ASCRS 2027：4月2–5日·美国圣迭戈"},
+ {s:"2026-04-24",e:"2026-04-26",n:"2026干眼康复学术年会暨第九届干眼西湖学术交流会议",p:"中国成都",u:"http://www.dryeye.org.cn",cn:1},
+ {s:"2026-05-03",e:"2026-05-07",a:"ARVO 2026",n:"美国视觉与眼科研究协会年会（ARVO 2026）",p:"美国丹佛",u:"https://www.arvo.org/annual-meeting",core:1,note:"下届 ARVO 2027：5月2–6日·美国圣迭戈，摘要预计2026年9月开放投稿、12月初截止（以官网为准）"},
+ {s:"2026-05-14",e:"2026-05-17",n:"第24届世界视网膜大会（Retina World Congress 2026）",p:"美国佛罗里达",u:"https://retinaworldcongress.org/congress-information/2026-retina-world-congress/"},
+ {s:"2026-05-21",e:"2026-05-23",n:"第二十七届眼底病论坛暨国际视网膜研讨会（Retina China 2026）",p:"中国南京",u:"http://www.cofds.com.cn",cn:1},
+ {s:"2026-05-28",e:"2026-05-31",n:"Vision China 2026",p:"中国天津",u:"http://www.vision-china.org",cn:1},
+ {s:"2026-05-30",e:"2026-06-02",n:"欧洲青光眼学会大会（EGS Congress 2026）",p:"比利时布鲁塞尔",u:"https://egscongress.org/",note:"两年一届"},
+ {s:"2026-06-04",e:"2026-06-06",n:"第38届亚太白内障和屈光外科医师协会年会（APACRS 2026）",p:"泰国芭提雅",u:"https://apacrs2026.org/"},
+
+ {s:"2026-06-17",e:"2026-06-20",a:"Optometry's Meeting",n:"第129届美国视光大会（Optometry's Meeting 2026）",p:"美国菲尼克斯",u:"https://www.optometrysmeeting.org/",
+  sub:"讲题征集已截止",
+  reg:"在线/现场注册均可，AOA 会员享半价以上优惠，费用明细见官网；早鸟价已截止（3月31日）"},
+
+ {s:"2026-06-26",e:"2026-06-29",a:"WOC 2026",n:"第四十届世界眼科大会（WOC 2026）",p:"捷克布拉格",u:"https://icowoc.org/",
+  sub:"摘要已截止",
+  reg:"官网在线注册；6月9日起进入 Late 档计价",
+  feeHead:["类别","Late 档（6月9日起）"],
+  fees:[["ICO 会员眼科医师","€800"],["非会员眼科医师/视光师","€890"],["科研人员/医师","€700"],["低收入国家眼科医师","€550"],["住院医/Fellow/学生/联合专业","€550"]],
+  feeNote:"含 21% 增值税；湿实验室课程 €185/场，Meet-the-Experts €45/场",
+  note:"两年一届 · ICO 主办"},
+
+ {s:"2026-07-07",e:"2026-07-11",a:"ISCEV 2026",n:"第63届国际临床视觉电生理协会年会（ISCEV 2026）",p:"澳大利亚悉尼",u:"https://iscev.wildapricot.org/event-5561582",
+  reg:"注册及费用见官网"},
+
+ {s:"2026-07-15",e:"2026-07-18",a:"ASRS 2026",n:"第44届美国视网膜专家学会年会（ASRS 2026）",p:"加拿大蒙特利尔",u:"https://www.asrs.org/annual-meeting",
+  sub:"摘要窗口：2025年12月3日 – 2026年1月28日（已截止）",
+  reg:"注册开放中，按会员/非会员/培训医师分档并提供线上参会选项，费用明细见官网 PDF 价目表",
+  note:"下届 ASRS 2027：7月28–31日·旧金山"},
+
+ {s:"2026-08-28",e:"2026-08-30",a:"APVRS 2026",n:"第19届亚太玻璃体视网膜学会大会（APVRS 2026）",p:"澳大利亚黄金海岸",u:"https://2026.apvrs.org/",core:1,
+  sub:"摘要窗口：1月16日开放，延长至4月24日截止（已截止）",
+  hots:[{d:"2026-06-30",t:"早鸟注册截止（由6月1日延长）"},{d:"2026-07-23",t:"预注册（Advance）截止"}],
+  reg:"注册费按早鸟/预注册/现场分档，金额见官网注册页；现场注册台 8月27日开放",
+  note:"主题 Where Retina Meets the Reef"},
+
+ {s:"2026-09-09",e:"2026-09-12",a:"CCOS 2026",n:"中华医学会第三十次全国眼科学术大会（CCOS 2026）",p:"中国天津",u:"https://ccos2026.sciconf.cn/",cn:1,
+  hots:[{d:"2026-06-30",t:"征文截止（24:00）"}],
+  sub:"大会官网「在线论文投稿」或邮箱 cosabstract@163.com（联系人：郝艳娇、孟菁）",
+  reg:"注册费待公布（参考上届 CCOS2024：提前缴费 800 元 / 现场 1200 元，专培生与研究生有优惠），以正式通知为准",
+  note:"预计参会代表超万人"},
+
+ {s:"2026-09-11",e:"2026-09-15",a:"ESCRS 2026",n:"第44届欧洲白内障与屈光外科医师学会年会（ESCRS 2026）",p:"英国伦敦",u:"https://escrs2026.org/",
+  sub:"摘要已截止（延长截止 3月5日）",
+  hots:[{d:"2026-06-24",t:"早鸟注册截止（23:59 CEST）"},{d:"2026-09-08",t:"常规注册截止，此后现场价"}],
+  feeHead:["类别","早鸟 ≤6/24","常规 ≤9/8","现场"],
+  fees:[["ESCRS 会员","€610","€795","€900"],["非会员","€725","€905","€1,015"],["培训/住院医（会员）","€160","€205","€205"],["培训/住院医（非会员）","€185","€240","€240"],["视轴矫正师/护士/技师","€185","€240","€240"],["联合医疗专业人员","€310","€420","€420"],["企业代表","€1,340","€1,810","€2,025"]],
+  feeNote:"单位欧元，不含增值税；Cornea Day / Glaucoma Day 单独加收 €175–235；低收入国家约半价"},
+
+ {s:"2026-09-30",e:"2026-10-03",a:"Academy 2026",n:"第105届美国视光学学会年会（Academy 2026 / AAOPT）",p:"美国阿纳海姆",u:"https://aaopt.org/meetings/academy-2026-anaheim/",
+  sub:"科学摘要窗口：5月1–29日（已截止）",
+  hots:[{d:"2026-07-29",t:"早鸟注册截止"}],
+  reg:"注册与住宿 4月15日起开放，会员/非会员费用明细见官网；同期 Myopia Summit：会员 $299 / 非会员 $399"},
+
+ {s:"2026-10-01",e:"2026-10-04",a:"EURETINA 2026",n:"第26届欧洲视网膜专家学会大会（EURETINA 2026）",p:"奥地利维也纳",u:"https://euretina.org/vienna-2026/",core:1,
+  sub:"Free Paper / ePoster 已截止（3月11日）；投稿需 EURETINA 会员资格",
+  hots:[{d:"2026-06-15",t:"临床试验结果 / Late Breaking 投稿截止（18:00 CEST）"},{d:"2026-07-30",t:"早鸟注册截止（23:59 CEST）"}],
+  feeHead:["类别","早鸟 ≤7/30","晚期 ≤9/30","现场"],
+  fees:[["EURETINA 会员","€330","€385","€440"],["非会员","€500","€555","€610"],["培训医师（会员）","€145","€190","€240"],["培训医师（非会员）","€170","€210","€260"],["护士/技师/联合人员","€150","€175","€225"],["企业代表","€1,200","€1,400","€1,600"]],
+  feeNote:"单位欧元，不含增值税；线上参会与现场同价；Research4Life A 类国家免费、B 类半价（需资格审核）",
+  note:"9月30日 EIS 创新专场"},
+
+ {s:"2026-10-10",e:"2026-10-12",a:"AAO 2026",n:"第130届美国眼科学会年会（AAO 2026）",p:"美国新奥尔良",u:"https://www.aao.org/annual-meeting",core:1,
+  sub:"论文/壁报/视频已截止（窗口 3月12日–4月14日）；官网 Presenter Central 在线投稿",
+  hots:[{d:"2026-06-17",t:"Grand Rounds 专场投稿截止"},{d:"2026-06-24",t:"会员注册通道开启"},{d:"2026-07-08",t:"非会员注册通道开启"},{d:"2026-08-05",t:"早鸟注册截止"}],
+  feeHead:["类别","早鸟 ≤8/5","提前 ≤9/9","现场"],
+  fees:[["Academy 会员","$225","$250","$275"],["非会员医师","$1,100","$1,150","$1,200"],["培训会员/医学生会员","$100","$100","$100"],["AAOE/AAOP 会员","$125","$150","$175"]],
+  fee2Title:"Subspecialty Day（10月9–10日，按天另收）",
+  fee2Head:["类别","早鸟","提前","现场"],
+  fees2:[["Academy 会员","$500","$525","$550"],["非会员医师","$600","$625","$650"],["培训会员","$275","$300","$325"]],
+  feeNote:"单位美元；9月9日为退款截止；9月15日前可申请 Academy 会员后按会员价注册",
+  note:"Subspecialty Day：10月9–10日；下届 AAO 2027：11月13–15日·拉斯维加斯"}
+];
+
+var FILTERS=["即将召开","全部","⭐ 重点","国内会议"];
+var state={q:"",f:"即将召开"};
+function pd(s){var a=s.split("-");return new Date(+a[0],a[1]-1,+a[2]);}
+var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+function st(c){var s=pd(c.s),e=pd(c.e);if(today>e)return{k:"past"};if(today>=s)return{k:"now"};return{k:"future",days:Math.round((s-today)/864e5)};}
+function badge(x){
+ if(x.k==="past")return '<span class="badge" style="background:#95a5a6">已闭幕</span>';
+ if(x.k==="now")return '<span class="badge" style="background:#27ae60">进行中</span>';
+ var col=x.days<=45?"#d4a017":"#2e86c1";
+ return '<span class="badge" style="background:'+col+'">距开幕 '+x.days+' 天</span>';
+}
+function dr(c){var s=pd(c.s),e=pd(c.e);
+ return (s.getMonth()+1)+"月"+s.getDate()+"日–"+((s.getMonth()===e.getMonth())?"":(e.getMonth()+1)+"月")+e.getDate()+"日";}
+function md(d){return (d.getMonth()+1)+"月"+d.getDate()+"日";}
+function hotLines(c){
+ var out="",off=[];
+ (c.hots||[]).forEach(function(h){
+  var d=pd(h.d);
+  if(d>=today){var left=Math.round((d-today)/864e5);
+   out+='<div class="dl">⏰ '+md(d)+' '+h.t+(left>0?'（还剩 '+left+' 天）':'（今天！）')+'</div>';}
+  else off.push(h.t.replace(/（.*?）/g,"")+"："+md(d)+"（已过）");
+ });
+ return {live:out, off:off};
+}
+function tbl(head,rows){
+ var t='<table><tr>'+head.map(function(h){return '<th>'+h+'</th>';}).join('')+'</tr>';
+ rows.forEach(function(r){t+='<tr>'+r.map(function(x){return '<td>'+x+'</td>';}).join('')+'</tr>';});
+ return t+'</table>';
+}
+function feeBlock(c){
+ if(!c.fees)return '';
+ var t='<details class="fd"><summary>💰 注册费明细（点开查看）</summary><div class="ft">'+tbl(c.feeHead,c.fees);
+ if(c.fees2)t+='<div class="f2t">'+c.fee2Title+'</div>'+tbl(c.fee2Head,c.fees2);
+ if(c.feeNote)t+='<div class="fn">'+c.feeNote+'</div>';
+ return t+'</div></details>';
+}
+function card(c){
+ var x=st(c), s=pd(c.s);
+ var hl=hotLines(c);
+ var ex=[];
+ if(c.sub)ex.push("📝 投稿："+c.sub);
+ if(c.reg)ex.push("🎫 注册："+c.reg);
+ if(c.note)ex.push("ℹ️ "+c.note);
+ hl.off.forEach(function(o){ex.push('<span class="off">✕ '+o+'</span>');});
+ return '<div class="card'+(c.core?" core":"")+(x.k==="past"?" past":"")+'">'
+  +'<div class="dt"><div class="m">'+(s.getMonth()+1)+'月</div><div class="d">'+s.getDate()+'</div><div class="len">'+dr(c)+'</div></div>'
+  +'<div class="bd"><div class="nm">'+(c.core?'<span class="star">⭐ </span>':"")+c.n+badge(x)+'</div>'
+  +'<div class="meta">📍 '+c.p+'</div>'
+  +hl.live
+  +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
+  +feeBlock(c)
+  +'<a class="go" href="'+c.u+'" target="_blank" rel="noopener">官网 ↗</a></div></div>';
+}
+function hotbar(){
+ var items=[];
+ CONFS.forEach(function(c){(c.hots||[]).forEach(function(h){
+  var d=pd(h.d),left=Math.round((d-today)/864e5);
+  if(left>=0&&left<=30)items.push({d:d,left:left,txt:(c.a||c.n),t:h.t});
+ });});
+ items.sort(function(a,b){return a.d-b.d;});
+ var el=document.getElementById("hot");
+ if(!items.length){el.style.display="none";return;}
+ el.innerHTML="⏰ <b>30 天内截止 / 开启</b><br>"+items.map(function(i){
+  return "<b>"+md(i.d)+"</b>　"+i.txt+" · "+i.t+(i.left>0?"（剩 "+i.left+" 天）":"（今天）");
+ }).join("<br>");
+}
+function render(){
+ var q=state.q.trim().toLowerCase();
+ var list=CONFS.filter(function(c){
+  var x=st(c);
+  if(state.f==="即将召开"&&x.k==="past")return false;
+  if(state.f==="⭐ 重点"&&!c.core)return false;
+  if(state.f==="国内会议"&&!c.cn)return false;
+  if(q&&((c.n+" "+c.p+" "+(c.a||"")).toLowerCase().indexOf(q)<0))return false;
+  return true;
+ }).sort(function(a,b){return pd(a.s)-pd(b.s);});
+ var box=document.getElementById("list");
+ if(!list.length){box.innerHTML='<div class="empty">没有符合条件的会议</div>';}
+ else{var h="",lm="";
+  list.forEach(function(c){var d=pd(c.s),k=d.getFullYear()+"年"+(d.getMonth()+1)+"月";
+   if(k!==lm){h+='<div class="month">'+k+'</div>';lm=k;}h+=card(c);});
+  box.innerHTML=h;}
+ var fut=CONFS.map(function(c){return st(c);}).filter(function(x){return x.k==="future";});
+ document.getElementById("stats").textContent="显示 "+list.length+" 场 · 全年共 "+CONFS.length+" 场，其中未开幕 "+fut.length+" 场";
+}
+var chips=document.getElementById("chips");
+FILTERS.forEach(function(f){
+ var s=document.createElement("span");s.className="chip"+(state.f===f?" on":"");s.textContent=f;
+ s.onclick=function(){state.f=f;Array.prototype.forEach.call(chips.children,function(x){x.classList.toggle("on",x.textContent===f);});render();};
+ chips.appendChild(s);
+});
+document.getElementById("q").addEventListener("input",function(e){state.q=e.target.value;render();});
+hotbar();render();
+</script>
+</body>
+</html>
