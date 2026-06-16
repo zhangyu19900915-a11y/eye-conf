@@ -48,6 +48,7 @@ h1{color:#1a5276;font-size:21px;letter-spacing:1px}
 .fd .f2t{font-size:12px;font-weight:600;color:#566573;margin-top:7px}
 .fd .fn{font-size:11px;color:#95a5a6;margin-top:5px;line-height:1.6;white-space:normal}
 .nolink{display:inline-block;margin-top:8px;font-size:12px;color:#aab4bc}
+.hot{font-size:11px;font-weight:700;color:#e67e22;white-space:nowrap}
 .empty{text-align:center;color:#7f8c8d;padding:40px 0;font-size:14px;background:#fff;border-radius:12px}
 footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top:1px solid #e3e9ef;padding-top:10px}
 </style>
@@ -66,7 +67,8 @@ footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top
 <div id="stats"></div>
 <div id="list"></div>
 <footer>
-  说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。<br>
+  <div style="font-size:13px;color:#1a5276;font-weight:600;margin-bottom:9px;line-height:1.75">📋 本表由《医学进行时》收集整理 · 如有会议更新或信息纠错，欢迎联系微信 <span style="color:#d4a017;font-weight:700">15810865775</span></div>
+  说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。<br>
   国内会议日程整理自《中国眼科报》2026 年 5–12 月清单及公开通知，部分官网/征文/注册信息待补充；注册费为各官网当前公布价，货币与税费以官网结算为准。一切以会议官方通知为准。
 </footer>
 </div>
@@ -213,8 +215,10 @@ var CONFS=[
  {s:"2026-12-25",e:"2026-12-26",n:"天津医科大学总医院眼科GX峰会",p:"中国天津",u:"",cn:1}
 ];
 
-var FILTERS=["即将召开","全部","⭐ 重点","国内会议"];
+var FILTERS=["即将召开","🔥 我常看的","全部","⭐ 重点","国内会议"];
 var state={q:"",f:"即将召开"};
+function getClicks(){try{return JSON.parse(localStorage.getItem("eyeconf_clicks")||"{}");}catch(e){return {};}}
+function bump(i){try{var c=CONFS[i],m=getClicks();m[c.n]=(m[c.n]||0)+1;localStorage.setItem("eyeconf_clicks",JSON.stringify(m));if(state.f==="🔥 我常看的")render();}catch(e){}}
 function pd(s){var a=s.split("-");return new Date(+a[0],a[1]-1,+a[2]);}
 var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
 function st(c){var s=pd(c.s),e=pd(c.e);if(today>e)return{k:"past"};if(today>=s)return{k:"now"};return{k:"future",days:Math.round((s-today)/864e5)};}
@@ -250,8 +254,8 @@ function feeBlock(c){
  if(c.feeNote)t+='<div class="fn">'+c.feeNote+'</div>';
  return t+'</div></details>';
 }
-function card(c){
- var x=st(c), s=pd(c.s);
+function card(c,cnt){
+ var x=st(c), s=pd(c.s), i=CONFS.indexOf(c);
  var hl=hotLines(c);
  var ex=[];
  if(c.sub)ex.push("📝 投稿："+c.sub);
@@ -260,12 +264,12 @@ function card(c){
  hl.off.forEach(function(o){ex.push('<span class="off">✕ '+o+'</span>');});
  return '<div class="card'+(c.core?" core":"")+(x.k==="past"?" past":"")+'">'
   +'<div class="dt"><div class="m">'+(s.getMonth()+1)+'月</div><div class="d">'+s.getDate()+'</div><div class="len">'+dr(c)+'</div></div>'
-  +'<div class="bd"><div class="nm">'+(c.core?'<span class="star">⭐ </span>':"")+c.n+badge(x)+'</div>'
+  +'<div class="bd"><div class="nm">'+(c.core?'<span class="star">⭐ </span>':"")+c.n+badge(x)+(cnt?' <span class="hot">🔥 '+cnt+' 次</span>':"")+'</div>'
   +'<div class="meta">📍 '+c.p+'</div>'
   +hl.live
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
-  +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener">官网 ↗</a>':'<span class="nolink">官网待补充</span>')
+  +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':'<span class="nolink">官网待补充</span>')
   +'</div></div>';
 }
 function hotbar(){
@@ -283,6 +287,19 @@ function hotbar(){
 }
 function render(){
  var q=state.q.trim().toLowerCase();
+ var box=document.getElementById("list");
+ if(state.f==="🔥 我常看的"){
+  var m=getClicks();
+  var top=CONFS.filter(function(c){return m[c.n];}).sort(function(a,b){return m[b.n]-m[a.n];}).slice(0,10);
+  if(!top.length){
+   box.innerHTML='<div class="empty">这里还是空的 🙂<br>点开任意会议的「官网」后，系统会在<b>你这台设备上</b>记下你最常看的会议，自动排到这里（最多 10 个）。<br>数据只存在本机浏览器，不上传。</div>';
+   document.getElementById("stats").textContent="按本设备点击量自动排序";
+  }else{
+   box.innerHTML=top.map(function(c){return card(c,m[c.n]);}).join("");
+   document.getElementById("stats").textContent="按本设备点击量排序，你最常看的 "+top.length+" 场";
+  }
+  return;
+ }
  var list=CONFS.filter(function(c){
   var x=st(c);
   if(state.f==="即将召开"&&x.k==="past")return false;
@@ -291,7 +308,6 @@ function render(){
   if(q&&((c.n+" "+c.p+" "+(c.a||"")).toLowerCase().indexOf(q)<0))return false;
   return true;
  }).sort(function(a,b){return pd(a.s)-pd(b.s);});
- var box=document.getElementById("list");
  if(!list.length){box.innerHTML='<div class="empty">没有符合条件的会议</div>';}
  else{var h="",lm="";
   list.forEach(function(c){var d=pd(c.s),k=d.getFullYear()+"年"+(d.getMonth()+1)+"月";
