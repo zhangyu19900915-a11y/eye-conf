@@ -1,0 +1,12 @@
+{
+  "name": "wechat-md-theme",
+  "private": true,
+  "type": "module",
+  "description": "doocs/md 公众号主题与 Markdown → 微信内联 HTML 转换脚本",
+  "scripts": {
+    "build-themes": "node build.mjs"
+  },
+  "dependencies": {
+    "juice": "^12.2.0"
+  }
+}

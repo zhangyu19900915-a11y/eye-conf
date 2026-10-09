@@ -82,7 +82,7 @@ figcaption, .md-figcaption { margin-top: 6px; font-size: 12px; line-height: 1.6;
 
 /* 表格 */
 table { width: 100%; margin: 0 0 20px; border-collapse: collapse; font-size: 14px; color: #000000; }
-thead { background: ${t.primary}; }
+thead { background: ${t.primary}; color: #ffffff; }
 th { padding: 6px 8px; border: 1px solid ${t.primary}; background: ${t.primary}; font-weight: bold; color: #ffffff; text-align: left; }
 td { padding: 6px 8px; border: 1px solid #dfe6ec; line-height: 1.6; color: #000000; text-align: left; }
 

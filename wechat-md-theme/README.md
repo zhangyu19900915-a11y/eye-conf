@@ -47,6 +47,29 @@
 
 提示块 `[!XXX]` 后面同一行的文字就是框标题，可以按需改写，例如 `> [!TIP] 要点速览`。完整示例见 `示例稿.md`：把它粘进编辑器，就能看到所有组件的效果。
 
+## 不开网页：命令行直接出微信 HTML（md2wechat.mjs）
+
+这条路径和网页版「复制」用的是同一套管线：doocs/md 渲染器渲染，叠加本目录主题，再用 juice 把样式内联。之后脚本会清掉 `<style>`、class、CSS 变量和 `color-mix()`，给块元素补上显式对齐，按 med-wechat-publishing §5 自检，最后输出带「复制正文」按钮的成品 .html。
+
+一次性安装需要 Node.js 22.22.2 或更高版本：
+
+```bash
+git clone https://github.com/doocs/md.git ~/doocs-md
+cd ~/doocs-md && corepack enable && pnpm install   # 国内用默认镜像即可
+cd <本仓库>/wechat-md-theme && npm install          # 安装 juice
+```
+
+每次出稿：
+
+```bash
+MD_REPO=~/doocs-md node md2wechat.mjs 稿件.md themes/01-蓝金-医学进行时.css 稿件.wechat.html
+```
+
+- 第二个参数是主题，省略时默认用蓝金。
+- 第三个参数是输出路径，省略时输出为 `稿件.wechat.html`。
+- 自检发现 flex、渐变、两端对齐、`text-align:start` 或 CSS 变量残留时，脚本会报错，退出码为 1。
+- 用浏览器打开生成的 .html，点「复制正文」，再粘贴到公众号编辑器即可。
+
 ## 修改与重新生成
 
 所有配色都在 `build.mjs` 顶部的 `themes` 数组里。改完后运行：
