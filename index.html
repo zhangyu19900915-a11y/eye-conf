@@ -114,7 +114,7 @@ footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top
 <footer>
   <div style="font-size:13px;color:#1a5276;font-weight:600;margin-bottom:9px;line-height:1.75">📋 本表由《医学进行时》收集整理 · 如有会议更新或信息纠错，欢迎联系微信 <span style="color:#d4a017;font-weight:700">15810865775</span></div>
   说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。每张卡片可「☆ 收藏」「📅 加入日历」（生成 .ics，含开幕前 7 天、截止前 3 天提醒；微信内需先点右上角在浏览器打开）和「📋 复制」会议信息转发到群里；「📮 截止节点」把所有待到的投稿/注册截止按日期汇总；第二排按亚专业方向筛选（按会议名称自动归类，仅供参考）。<br>
-  国内会议日程整理自公开通知，多数没有独立官网，卡片上的「🔍 搜会议通知」会在公众号文章里检索该会议的正式通知；注册费为各官网当前公布价，货币与税费以官网结算为准。2027 年收录已公布日期的国际会议及 COOC 2027（CCOS、COA、Vision China 等国内 2027 会议尚未公布）。一切以会议官方通知为准。<br>
+  国内会议日程整理自公开通知，多数没有独立官网，卡片上的「🔍 搜会议通知」会在公众号文章里检索该会议的正式通知；个别官网待核实的国际会议用「🔍 谷歌搜官网」；注册费为各官网当前公布价，货币与税费以官网结算为准。2027 年收录已公布日期的国际会议及 COOC 2027（CCOS、COA、Vision China 等国内 2027 会议尚未公布）。一切以会议官方通知为准。<br>
   <span id="busuanzi_container_site_pv" style="display:none">📈 总访问 <b id="busuanzi_value_site_pv" style="color:#1a5276"></b> 次</span><span id="busuanzi_container_site_uv" style="display:none">　·　访客 <b id="busuanzi_value_site_uv" style="color:#1a5276"></b> 人</span>
 </footer>
 </div>
@@ -158,7 +158,7 @@ var CONFS=[
  {s:"2026-06-17",e:"2026-06-20",a:"Optometry's Meeting",n:"第129届美国视光大会（Optometry's Meeting 2026）",p:"美国菲尼克斯",u:"https://www.optometrysmeeting.org/",
   sub:"讲题征集已截止",
   reg:"在线/现场注册均可，AOA 会员享半价以上优惠，费用明细见官网；早鸟价已截止（3月31日）"},
- {s:"2026-06-20",e:"2026-06-20",n:"日本近视学会年会",p:"日本东京",u:""},
+ {s:"2026-06-20",e:"2026-06-20",n:"日本近视学会年会",p:"日本东京",u:"",g:"日本近視学会 総会 2026"},
  {s:"2026-06-26",e:"2026-06-28",a:"JSCRS 2026",n:"日本白内障屈光手术学术年会（JSCRS 2026）",p:"日本大阪",u:"https://www.c-linkage.co.jp/jscrs41/"},
 
  {s:"2026-06-26",e:"2026-06-29",a:"WOC 2026",n:"第四十届世界眼科大会（WOC 2026）",p:"捷克布拉格",u:"https://icowoc.org/",
@@ -238,7 +238,7 @@ var CONFS=[
   feeNote:"单位欧元，不含增值税；线上参会与现场同价；Research4Life A 类国家免费、B 类半价（需资格审核）",
   note:"9月30日 EIS 创新专场；下届 EURETINA 2027：9月16–19日·丹麦哥本哈根 Bella Center"},
 
- {s:"2026-10-02",e:"2026-10-04",n:"日本青光眼学会年会",p:"日本静冈",u:""},
+ {s:"2026-10-02",e:"2026-10-04",n:"日本青光眼学会年会",p:"日本静冈",u:"",g:"第37回日本緑内障学会 2026"},
 
  {s:"2026-10-10",e:"2026-10-12",a:"AAO 2026",n:"第130届美国眼科学会年会（AAO 2026）",p:"美国新奥尔良",u:"https://www.aao.org/annual-meeting",core:1,
   sub:"论文/壁报/视频已截止（窗口 3月12日–4月14日）；官网 Presenter Central 在线投稿",
@@ -431,7 +431,8 @@ function card(c,cnt){
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
   +'<div class="acts">'
-  +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent((c.n).replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>')
+  +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':(c.cn?'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent(c.n.replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>'
+   :'<a class="go alt" href="https://www.google.com/search?q='+encodeURIComponent(c.g||((c.a||c.n)+" official website"))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="官网待核实，用谷歌搜索">🔍 谷歌搜官网</a>'))
   +'<span class="act'+(fav?" on":"")+'" onclick="toggleFav('+i+')">'+(fav?"★ 已收藏":"☆ 收藏")+'</span>'
   +(x.k!=="past"?'<span class="act" onclick="addCal('+i+')">📅 日历</span>':"")
   +'<span class="act" onclick="copyInfo('+i+')">📋 复制</span>'
