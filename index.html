@@ -55,6 +55,37 @@ h1{color:#1a5276;font-size:21px;letter-spacing:1px}
 .qrcap{font-size:11.5px;color:#7f8c8d;margin-top:6px;line-height:1.7}
 .qrcap b{color:#1a5276}
 .empty{text-align:center;color:#7f8c8d;padding:40px 0;font-size:14px;background:#fff;border-radius:12px}
+.chips.dirs{margin-top:7px;padding-top:8px;border-top:1px dashed #e3e9ef}
+.chips.dirs .chip{font-size:12px;padding:4px 11px;background:#fbf6e7;color:#8a6d0b}
+.chips.dirs .chip.on{background:#d4a017;color:#fff}
+.tag{display:inline-block;font-size:10.5px;color:#2e86c1;background:#eef5fb;border-radius:4px;padding:0 5px;margin-right:4px;vertical-align:1px}
+.acts{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.acts .go{padding:5px 11px}
+.acts .go,.acts .nolink{margin-top:0}
+.act{font-size:12px;color:#1a5276;border:1px solid #d6e4ee;border-radius:7px;padding:4px 8px;cursor:pointer;user-select:none;background:#fff}
+.act.on{color:#b7860b;border-color:#f0d9a0;background:#fff8e8;font-weight:600}
+.card.flash{box-shadow:0 0 0 3px #d4a017}
+#next{background:#1a5276;color:#fff;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+#next .nk{font-size:12px;color:#f3d27a;font-weight:700;letter-spacing:1px}
+#next .nrow{display:flex;align-items:center;gap:14px;margin-top:6px}
+#next .nnum{font-size:34px;font-weight:800;color:#f3d27a;line-height:1;flex:none}
+#next .nnum span{display:block;font-size:11px;font-weight:400;color:#d6e4ee;margin-top:4px}
+#next .nname{font-size:17px;font-weight:700}
+#next .nmeta{font-size:12px;color:#d6e4ee;line-height:1.6;margin-top:2px}
+#next .nx2{font-size:11.5px;color:#aac4d8;margin-top:8px}
+#next .nbtn{margin-top:9px;display:flex;gap:8px}
+#next .nbtn span{font-size:12px;border:1px solid rgba(255,255,255,.4);border-radius:7px;padding:4px 11px;cursor:pointer}
+.dlrow{background:#fff;border-radius:10px;padding:9px 12px;margin-bottom:7px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 4px rgba(26,82,118,.08);cursor:pointer}
+.dld{flex:none;width:62px;text-align:center;font-size:13px;font-weight:700;color:#1a5276}
+.dld b{display:block;font-size:11px;color:#fff;border-radius:999px;padding:1px 0;margin-top:3px}
+.dlt{flex:1;min-width:0}
+.dln{font-size:13.5px;font-weight:600}
+.dlx{font-size:12px;color:#566573;margin-top:2px}
+.dla{color:#aab4bc;font-size:18px}
+.favbar{margin:4px 0 2px;text-align:center}
+.favbar span{display:inline-block;font-size:13px;font-weight:600;color:#fff;background:#d4a017;border-radius:8px;padding:7px 14px;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:rgba(26,40,52,.92);color:#fff;font-size:13px;padding:9px 16px;border-radius:9px;max-width:88%;text-align:center;opacity:0;pointer-events:none;transition:all .25s;z-index:9}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top:1px solid #e3e9ef;padding-top:10px}
 </style>
 </head>
@@ -69,16 +100,19 @@ footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top
     <div class="qrcap">扫码关注 <b>「医学进行时」</b> 公众号　·　会议更新或纠错请加微信 <b>15810865775</b></div>
   </div>
 </header>
+<div id="next"></div>
 <div id="hot"></div>
 <div class="bar">
   <input id="q" type="search" placeholder="搜索会议 / 城市 / 国家…">
   <div class="chips" id="chips"></div>
+  <div class="chips dirs" id="dirs"></div>
 </div>
 <div id="stats"></div>
 <div id="list"></div>
+<div id="toast"></div>
 <footer>
   <div style="font-size:13px;color:#1a5276;font-weight:600;margin-bottom:9px;line-height:1.75">📋 本表由《医学进行时》收集整理 · 如有会议更新或信息纠错，欢迎联系微信 <span style="color:#d4a017;font-weight:700">15810865775</span></div>
-  说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。<br>
+  说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。每张卡片可「☆ 收藏」「📅 加入日历」（生成 .ics，含开幕前 7 天、截止前 3 天提醒；微信内需先点右上角在浏览器打开）和「📋 复制」会议信息转发到群里；「📮 截止节点」把所有待到的投稿/注册截止按日期汇总；第二排按亚专业方向筛选（按会议名称自动归类，仅供参考）。<br>
   国内会议日程整理自公开通知，部分官网/征文/注册信息待补充；注册费为各官网当前公布价，货币与税费以官网结算为准。2027 年收录已公布日期的国际会议及 COOC 2027（CCOS、COA、Vision China 等国内 2027 会议尚未公布）。一切以会议官方通知为准。<br>
   <span id="busuanzi_container_site_pv" style="display:none">📈 总访问 <b id="busuanzi_value_site_pv" style="color:#1a5276"></b> 次</span><span id="busuanzi_container_site_uv" style="display:none">　·　访客 <b id="busuanzi_value_site_uv" style="color:#1a5276"></b> 人</span>
 </footer>
@@ -260,7 +294,7 @@ var CONFS=[
  {s:"2027-06-16",e:"2027-06-19",a:"Optometry's Meeting 2027",n:"第130届美国视光大会（Optometry's Meeting 2027）",p:"美国波士顿 · BCEC 会展中心",u:"https://www.optometrysmeeting.org/about/future-optometrys-meetings",note:"第130届 AOA 大会暨第59届 AOSA 会议"},
  {s:"2027-06-18",e:"2027-06-20",a:"SOE 2027",n:"第25届欧洲眼科学会大会（SOE 2027）",p:"希腊雅典 · Megaron 会议中心",u:"https://soe2027.soevision.org/",note:"两年一届；与 ISOT、EUPO 联合举办"},
  {s:"2027-07-28",e:"2027-07-31",a:"ASRS 2027",n:"第45届美国视网膜专家学会年会（ASRS 2027）",p:"美国旧金山 · Moscone 中心",u:"https://www.asrs.org/annual-meeting"},
- {s:"2027-09-16",e:"2027-09-19",a:"EURETINA 2027",n:"第27届欧洲视网膜专家学会大会（EURETINA 2027）",p:"丹麦哥本哈根 · Bella Center",u:"https://euretina.org/future-meetings/",core:1,note:"9月15日 EIS 创新专场；官网 2026 FAQ 一处写作10月1–4日，与 Future Meetings 页（9月16–19日）不一致，暂按后者"},
+ {s:"2027-09-16",e:"2027-09-19",a:"EURETINA 2027",n:"第27届欧洲视网膜专家学会大会（EURETINA 2027）",p:"丹麦哥本哈根 · Bella Center",u:"https://euretina.org/future-meetings/",core:1,note:"9月15日 EIS 创新专场"},
  {s:"2027-10-15",e:"2027-10-19",a:"ESCRS 2027",n:"第45届欧洲白内障与屈光外科医师学会年会（ESCRS 2027）",p:"西班牙马德里 · IFEMA",u:"https://congress.escrs.org/",
   sub:"教学课程（Instructional Course）投稿2026年10月23日截止，2027年1月底通知",
   hots:[{d:"2026-10-23",t:"教学课程投稿截止"}],
@@ -270,13 +304,33 @@ var CONFS=[
  {s:"2027-11-13",e:"2027-11-15",a:"AAO 2027",n:"美国眼科学会年会（AAO 2027）",p:"美国拉斯维加斯 · Venetian",u:"https://www.aao.org/annual-meeting/past-and-future-meetings",core:1,note:"Subspecialty Day：11月12–13日"}
 ];
 
-var FILTERS=["即将召开","🔥 我常看的","全部","⭐ 重点","国内会议"];
-var state={q:"",f:"即将召开"};
-function getClicks(){try{return JSON.parse(localStorage.getItem("eyeconf_clicks")||"{}");}catch(e){return {};}}
-function bump(i){try{var c=CONFS[i],m=getClicks();m[c.n]=(m[c.n]||0)+1;localStorage.setItem("eyeconf_clicks",JSON.stringify(m));if(state.f==="🔥 我常看的")render();}catch(e){}}
+var FILTERS=["即将召开","📮 截止节点","☆ 我的收藏","🔥 我常看的","全部","⭐ 重点","国内会议"];
+var DIRS=[
+ ["视网膜",/视网膜|眼底|retina|黄斑|macula|玻璃体|apvrs|asrs|jrvs|iscev|血管/i],
+ ["白内障·屈光",/白内障|屈光|escrs|ascrs|apacrs|jscrs/i],
+ ["青光眼",/青光眼|glaucoma|ags |apgc|wgc|egs/i],
+ ["视光·近视",/视光|近视|optometry|academy|vision china|brightchina/i],
+ ["小儿·斜视",/小儿|儿童|斜视|aapos/i],
+ ["神经·眼眶",/神经眼科|眼眶|甲状腺|泪器/i],
+ ["眼表·干眼",/干眼|眼表|角膜/i]
+];
+function dirsOf(c){
+ if(c._d)return c._d;
+ var t=c.n+" "+(c.a||""),d=[];
+ DIRS.forEach(function(x){if(x[1].test(t))d.push(x[0]);});
+ c._d=d.length?d:["综合"];return c._d;
+}
+var state={q:"",f:"即将召开",d:"全部方向"};
+function lsGet(k,def){try{return JSON.parse(localStorage.getItem(k)||def);}catch(e){return JSON.parse(def);}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function getClicks(){return lsGet("eyeconf_clicks","{}");}
+function bump(i){var c=CONFS[i],m=getClicks();m[c.n]=(m[c.n]||0)+1;lsSet("eyeconf_clicks",m);if(state.f==="🔥 我常看的")render();}
+function getFav(){return lsGet("eyeconf_fav","{}");}
+function toggleFav(i){var c=CONFS[i],m=getFav();if(m[c.n])delete m[c.n];else m[c.n]=1;lsSet("eyeconf_fav",m);
+ toast(m[c.n]?"已收藏，可在「☆ 我的收藏」里查看":"已取消收藏");render();}
 function pd(s){var a=s.split("-");return new Date(+a[0],a[1]-1,+a[2]);}
 var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-function st(c){var s=pd(c.s),e=pd(c.e);if(today>e)return{k:"past"};if(today>=s)return{k:"now"};return{k:"future",days:Math.round((s-today)/864e5)};}
+function st(c){var s=pd(c.s),e=pd(c.e);if(today>e)return{k:"past"};if(today>=s)return{k:"now",day:Math.round((today-s)/864e5)+1,len:Math.round((e-s)/864e5)+1};return{k:"future",days:Math.round((s-today)/864e5)};}
 function badge(x){
  if(x.k==="past")return '<span class="badge" style="background:#95a5a6">已闭幕</span>';
  if(x.k==="now")return '<span class="badge" style="background:#27ae60">进行中</span>';
@@ -309,23 +363,78 @@ function feeBlock(c){
  if(c.feeNote)t+='<div class="fn">'+c.feeNote+'</div>';
  return t+'</div></details>';
 }
+
+/* ---------- 提示条 ---------- */
+var toastT;
+function toast(msg){var el=document.getElementById("toast");el.textContent=msg;el.className="show";clearTimeout(toastT);toastT=setTimeout(function(){el.className="";},2600);}
+var inWx=/MicroMessenger/i.test(navigator.userAgent);
+
+/* ---------- 加入日历（.ics） ---------- */
+function ymd(d){return d.getFullYear()+("0"+(d.getMonth()+1)).slice(-2)+("0"+d.getDate()).slice(-2);}
+function icsEsc(t){return String(t).replace(/<[^>]+>/g,"").replace(/([,;\\])/g,"\\$1").replace(/\n/g,"\\n");}
+function icsEvents(c){
+ var ev=[],stamp=ymd(today)+"T000000Z",e1=pd(c.e);e1.setDate(e1.getDate()+1);
+ var desc=[c.sub?"投稿："+c.sub:"",c.reg?"注册："+c.reg:"",c.note||"",c.u?"官网："+c.u:"","—— 来自《医学进行时》眼科会议速查"].filter(Boolean).join("\n");
+ ev.push(["BEGIN:VEVENT","UID:"+ymd(pd(c.s))+"-"+encodeURIComponent(c.a||c.n).slice(0,40)+"@eyeconf","DTSTAMP:"+stamp,
+  "DTSTART;VALUE=DATE:"+ymd(pd(c.s)),"DTEND;VALUE=DATE:"+ymd(e1),"SUMMARY:"+icsEsc(c.a||c.n),"LOCATION:"+icsEsc(c.p),
+  "DESCRIPTION:"+icsEsc(c.n+"\n"+desc),(c.u?"URL:"+c.u:""),
+  "BEGIN:VALARM","TRIGGER:-P7D","ACTION:DISPLAY","DESCRIPTION:"+icsEsc((c.a||c.n)+" 一周后开幕"),"END:VALARM","END:VEVENT"].filter(Boolean).join("\r\n"));
+ (c.hots||[]).forEach(function(h,k){var d=pd(h.d);if(d<today)return;var d1=new Date(d);d1.setDate(d1.getDate()+1);
+  ev.push(["BEGIN:VEVENT","UID:"+ymd(d)+"-"+k+"-"+encodeURIComponent(c.a||c.n).slice(0,40)+"@eyeconf","DTSTAMP:"+stamp,
+   "DTSTART;VALUE=DATE:"+ymd(d),"DTEND;VALUE=DATE:"+ymd(d1),"SUMMARY:"+icsEsc("⏰ "+(c.a||c.n)+" · "+h.t),
+   "BEGIN:VALARM","TRIGGER:-P3D","ACTION:DISPLAY","DESCRIPTION:"+icsEsc((c.a||c.n)+" "+h.t+"（3天后）"),"END:VALARM","END:VEVENT"].join("\r\n"));});
+ return ev;
+}
+function saveIcs(list,fname){
+ if(inWx){toast("微信内无法下载日历文件，请点右上角「···」→「在浏览器打开」后再试");return;}
+ var ev=[];list.forEach(function(c){ev=ev.concat(icsEvents(c));});
+ var txt=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//yixuejinxingshi//eyeconf//CN","CALSCALE:GREGORIAN","X-WR-CALNAME:眼科会议速查"].concat(ev,["END:VCALENDAR"]).join("\r\n");
+ var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([txt],{type:"text/calendar;charset=utf-8"}));
+ a.download=fname+".ics";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},500);
+ toast("已生成日历文件，打开即可导入（含开幕前7天、截止前3天提醒）");
+}
+function addCal(i){var c=CONFS[i];saveIcs([c],(c.a||"眼科会议").replace(/[\\/:*?"<>|' ]/g,"_"));}
+function favCal(){var m=getFav(),l=CONFS.filter(function(c){return m[c.n]&&st(c).k!=="past";});
+ if(!l.length){toast("收藏里没有未开幕的会议");return;}saveIcs(l,"我收藏的眼科会议");}
+
+/* ---------- 复制会议信息 ---------- */
+function copyText(t){
+ function fb(){var ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();
+  var ok=false;try{ok=document.execCommand("copy");}catch(e){}ta.remove();toast(ok?"已复制，可直接粘贴到微信群":"复制失败，请长按手动复制");}
+ if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(function(){toast("已复制，可直接粘贴到微信群");},fb);else fb();
+}
+function copyInfo(i){
+ var c=CONFS[i],s=pd(c.s),L=["【"+(c.a||"眼科会议")+"】"+c.n,"📅 "+s.getFullYear()+"年"+dr(c),"📍 "+c.p];
+ (c.hots||[]).forEach(function(h){var d=pd(h.d);if(d>=today)L.push("⏰ "+md(d)+" "+h.t);});
+ if(c.sub)L.push("📝 投稿："+c.sub);
+ if(c.reg)L.push("🎫 注册："+c.reg);
+ if(c.u)L.push("🔗 "+c.u);
+ L.push("—— 《医学进行时》眼科会议速查 "+location.href.split("#")[0]);
+ copyText(L.join("\n"));
+}
+
+/* ---------- 卡片 ---------- */
 function card(c,cnt){
- var x=st(c), s=pd(c.s), i=CONFS.indexOf(c);
+ var x=st(c), s=pd(c.s), i=CONFS.indexOf(c), fav=getFav()[c.n];
  var hl=hotLines(c);
  var ex=[];
  if(c.sub)ex.push("📝 投稿："+c.sub);
  if(c.reg)ex.push("🎫 注册："+c.reg);
  if(c.note)ex.push("ℹ️ "+c.note);
  hl.off.forEach(function(o){ex.push('<span class="off">✕ '+o+'</span>');});
- return '<div class="card'+(c.core?" core":"")+(x.k==="past"?" past":"")+'">'
+ return '<div class="card'+(c.core?" core":"")+(x.k==="past"?" past":"")+'" id="c'+i+'">'
   +'<div class="dt"><div class="m">'+(s.getMonth()+1)+'月</div><div class="d">'+s.getDate()+'</div><div class="len">'+dr(c)+'</div></div>'
   +'<div class="bd"><div class="nm">'+(c.core?'<span class="star">⭐ </span>':"")+c.n+badge(x)+(cnt?' <span class="hot">🔥 '+cnt+' 次</span>':"")+'</div>'
-  +'<div class="meta">📍 '+c.p+'</div>'
+  +'<div class="meta">📍 '+c.p+'　'+dirsOf(c).map(function(d){return '<span class="tag">'+d+'</span>';}).join("")+'</div>'
   +hl.live
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
+  +'<div class="acts">'
   +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':'<span class="nolink">官网待补充</span>')
-  +'</div></div>';
+  +'<span class="act'+(fav?" on":"")+'" onclick="toggleFav('+i+')">'+(fav?"★ 已收藏":"☆ 收藏")+'</span>'
+  +(x.k!=="past"?'<span class="act" onclick="addCal('+i+')">📅 日历</span>':"")
+  +'<span class="act" onclick="copyInfo('+i+')">📋 复制</span>'
+  +'</div></div></div>';
 }
 function hotbar(){
  var items=[];
@@ -340,45 +449,102 @@ function hotbar(){
   return "<b>"+md(i.d)+"</b>　"+i.txt+" · "+i.t+(i.left>0?"（剩 "+i.left+" 天）":"（今天）");
  }).join("<br>");
 }
+
+/* ---------- 下一场重点会议倒计时 ---------- */
+function nextCore(){
+ var el=document.getElementById("next");
+ var l=CONFS.filter(function(c){return c.core&&st(c).k!=="past";}).sort(function(a,b){return pd(a.s)-pd(b.s);});
+ if(!l.length){el.style.display="none";return;}
+ var c=l[0],x=st(c),i=CONFS.indexOf(c),big,unit;
+ if(x.k==="now"){big="Day "+x.day;unit="/ 共 "+x.len+" 天 · 进行中";}
+ else{big=x.days;unit="天后开幕";}
+ var nx=l[1]?'<div class="nx2">再下一场：'+(l[1].a||l[1].n)+' · '+pd(l[1].s).getFullYear()+'年'+dr(l[1])+' · '+st(l[1]).days+' 天</div>':"";
+ el.innerHTML='<div class="nk">⭐ 下一场重点国际会议</div>'
+  +'<div class="nrow"><div class="nnum">'+big+'<span>'+unit+'</span></div>'
+  +'<div class="ninfo"><div class="nname">'+(c.a||c.n)+'</div><div class="nmeta">'+pd(c.s).getFullYear()+'年'+dr(c)+'<br>'+c.p+'</div></div></div>'
+  +nx+'<div class="nbtn"><span onclick="jump('+i+')">查看详情</span><span onclick="addCal('+i+')">📅 加入日历</span></div>';
+}
+function jump(i){
+ state.f="全部";state.d="全部方向";state.q="";document.getElementById("q").value="";syncChips();render();
+ var el=document.getElementById("c"+i);if(el){el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(function(){el.classList.remove("flash");},1800);}
+}
+
+/* ---------- 截止节点总览 ---------- */
+function deadlines(q){
+ var items=[];
+ CONFS.forEach(function(c,i){
+  if(!passDir(c)||!passQ(c,q))return;
+  (c.hots||[]).forEach(function(h){var d=pd(h.d);if(d>=today)items.push({d:d,c:c,i:i,t:h.t,left:Math.round((d-today)/864e5)});});
+ });
+ items.sort(function(a,b){return a.d-b.d;});
+ if(!items.length)return {html:'<div class="empty">当前筛选下没有待到的截止节点</div>',n:0};
+ var h="",lm="";
+ items.forEach(function(it){var k=it.d.getFullYear()+"年"+(it.d.getMonth()+1)+"月";
+  if(k!==lm){h+='<div class="month">'+k+'</div>';lm=k;}
+  var col=it.left<=7?"#b03a2e":it.left<=30?"#d4a017":"#2e86c1";
+  h+='<div class="dlrow" onclick="jump('+it.i+')"><div class="dld">'+md(it.d)+'<b style="background:'+col+'">'+(it.left?it.left+" 天":"今天")+'</b></div>'
+   +'<div class="dlt"><div class="dln">'+(it.c.core?"⭐ ":"")+(it.c.a||it.c.n)+'</div><div class="dlx">'+it.t+'</div></div><div class="dla">›</div></div>';
+ });
+ return {html:h,n:items.length};
+}
+
+/* ---------- 列表 ---------- */
+function passDir(c){return state.d==="全部方向"||dirsOf(c).indexOf(state.d)>=0;}
+function passQ(c,q){return !q||(c.n+" "+c.p+" "+(c.a||"")).toLowerCase().indexOf(q)>=0;}
 function render(){
  var q=state.q.trim().toLowerCase();
- var box=document.getElementById("list");
+ var box=document.getElementById("list"),stats=document.getElementById("stats");
+ if(state.f==="📮 截止节点"){
+  var r=deadlines(q);box.innerHTML=r.html;
+  stats.textContent="全部会议待到的投稿 / 注册节点共 "+r.n+" 个，按日期排序；点任一条跳到会议详情";return;
+ }
  if(state.f==="🔥 我常看的"){
   var m=getClicks();
   var top=CONFS.filter(function(c){return m[c.n];}).sort(function(a,b){return m[b.n]-m[a.n];}).slice(0,10);
   if(!top.length){
    box.innerHTML='<div class="empty">这里还是空的 🙂<br>点开任意会议的「官网」后，系统会在<b>你这台设备上</b>记下你最常看的会议，自动排到这里（最多 10 个）。<br>数据只存在本机浏览器，不上传。</div>';
-   document.getElementById("stats").textContent="按本设备点击量自动排序";
+   stats.textContent="按本设备点击量自动排序";
   }else{
    box.innerHTML=top.map(function(c){return card(c,m[c.n]);}).join("");
-   document.getElementById("stats").textContent="按本设备点击量排序，你最常看的 "+top.length+" 场";
+   stats.textContent="按本设备点击量排序，你最常看的 "+top.length+" 场";
   }
   return;
  }
+ var fav=getFav();
  var list=CONFS.filter(function(c){
   var x=st(c);
   if(state.f==="即将召开"&&x.k==="past")return false;
   if(state.f==="⭐ 重点"&&!c.core)return false;
   if(state.f==="国内会议"&&!c.cn)return false;
-  if(q&&((c.n+" "+c.p+" "+(c.a||"")).toLowerCase().indexOf(q)<0))return false;
-  return true;
+  if(state.f==="☆ 我的收藏"&&!fav[c.n])return false;
+  return passDir(c)&&passQ(c,q);
  }).sort(function(a,b){return pd(a.s)-pd(b.s);});
- if(!list.length){box.innerHTML='<div class="empty">没有符合条件的会议</div>';}
- else{var h="",lm="";
+ var pre="";
+ if(state.f==="☆ 我的收藏"&&list.length)pre='<div class="favbar"><span onclick="favCal()">📅 把收藏的未开幕会议一键导入日历</span></div>';
+ if(!list.length){box.innerHTML=state.f==="☆ 我的收藏"?'<div class="empty">还没有收藏 🙂<br>点会议卡片上的「☆ 收藏」，就能在这里集中查看，并一键导入手机日历。<br>收藏只存在本机浏览器。</div>':'<div class="empty">没有符合条件的会议</div>';}
+ else{var h=pre,lm="";
   list.forEach(function(c){var d=pd(c.s),k=d.getFullYear()+"年"+(d.getMonth()+1)+"月";
    if(k!==lm){h+='<div class="month">'+k+'</div>';lm=k;}h+=card(c);});
   box.innerHTML=h;}
  var fut=CONFS.map(function(c){return st(c);}).filter(function(x){return x.k==="future";});
- document.getElementById("stats").textContent="显示 "+list.length+" 场 · 共收录 "+CONFS.length+" 场，其中未开幕 "+fut.length+" 场";
+ stats.textContent="显示 "+list.length+" 场 · 共收录 "+CONFS.length+" 场，其中未开幕 "+fut.length+" 场";
 }
-var chips=document.getElementById("chips");
-FILTERS.forEach(function(f){
- var s=document.createElement("span");s.className="chip"+(state.f===f?" on":"");s.textContent=f;
- s.onclick=function(){state.f=f;Array.prototype.forEach.call(chips.children,function(x){x.classList.toggle("on",x.textContent===f);});render();};
- chips.appendChild(s);
-});
+function mkChips(id,arr,key){
+ var box=document.getElementById(id);
+ arr.forEach(function(f){
+  var s=document.createElement("span");s.className="chip";s.textContent=f;
+  s.onclick=function(){state[key]=f;syncChips();render();};
+  box.appendChild(s);
+ });
+}
+function syncChips(){
+ [["chips","f"],["dirs","d"]].forEach(function(p){Array.prototype.forEach.call(document.getElementById(p[0]).children,function(x){x.classList.toggle("on",x.textContent===state[p[1]]);});});
+}
+mkChips("chips",FILTERS,"f");
+mkChips("dirs",["全部方向"].concat(DIRS.map(function(x){return x[0];}),["综合"]),"d");
+syncChips();
 document.getElementById("q").addEventListener("input",function(e){state.q=e.target.value;render();});
-hotbar();render();
+nextCore();hotbar();render();
 </script>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </body>
