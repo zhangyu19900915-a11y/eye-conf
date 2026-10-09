@@ -61,6 +61,7 @@ h1{color:#1a5276;font-size:21px;letter-spacing:1px}
 .tag{display:inline-block;font-size:10.5px;color:#2e86c1;background:#eef5fb;border-radius:4px;padding:0 5px;margin-right:4px;vertical-align:1px}
 .acts{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:5px}
 .acts .go{padding:5px 11px}
+.go.alt{background:#fff;color:#1a5276;border:1px solid #1a5276;padding:4px 10px}
 .acts .go,.acts .nolink{margin-top:0}
 .act{font-size:12px;color:#1a5276;border:1px solid #d6e4ee;border-radius:7px;padding:4px 8px;cursor:pointer;user-select:none;background:#fff}
 .act.on{color:#b7860b;border-color:#f0d9a0;background:#fff8e8;font-weight:600}
@@ -113,7 +114,7 @@ footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top
 <footer>
   <div style="font-size:13px;color:#1a5276;font-weight:600;margin-bottom:9px;line-height:1.75">📋 本表由《医学进行时》收集整理 · 如有会议更新或信息纠错，欢迎联系微信 <span style="color:#d4a017;font-weight:700">15810865775</span></div>
   说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。每张卡片可「☆ 收藏」「📅 加入日历」（生成 .ics，含开幕前 7 天、截止前 3 天提醒；微信内需先点右上角在浏览器打开）和「📋 复制」会议信息转发到群里；「📮 截止节点」把所有待到的投稿/注册截止按日期汇总；第二排按亚专业方向筛选（按会议名称自动归类，仅供参考）。<br>
-  国内会议日程整理自公开通知，部分官网/征文/注册信息待补充；注册费为各官网当前公布价，货币与税费以官网结算为准。2027 年收录已公布日期的国际会议及 COOC 2027（CCOS、COA、Vision China 等国内 2027 会议尚未公布）。一切以会议官方通知为准。<br>
+  国内会议日程整理自公开通知，多数没有独立官网，卡片上的「🔍 搜会议通知」会在公众号文章里检索该会议的正式通知；注册费为各官网当前公布价，货币与税费以官网结算为准。2027 年收录已公布日期的国际会议及 COOC 2027（CCOS、COA、Vision China 等国内 2027 会议尚未公布）。一切以会议官方通知为准。<br>
   <span id="busuanzi_container_site_pv" style="display:none">📈 总访问 <b id="busuanzi_value_site_pv" style="color:#1a5276"></b> 次</span><span id="busuanzi_container_site_uv" style="display:none">　·　访客 <b id="busuanzi_value_site_uv" style="color:#1a5276"></b> 人</span>
 </footer>
 </div>
@@ -147,7 +148,7 @@ var CONFS=[
 
  {s:"2026-06-04",e:"2026-06-06",n:"第38届亚太白内障和屈光外科医师协会年会（APACRS 2026）",p:"泰国芭提雅",u:"https://apacrs2026.org/"},
  {s:"2026-06-04",e:"2026-06-07",n:"第二十届新疆医学会眼科学分会学术年会",p:"新疆喀什",u:"",cn:1},
- {s:"2026-06-05",e:"2026-06-06",a:"APTOS 2026",n:"第十一届亚太远程眼科学会年会（APTOS 2026）",p:"中国上海",u:"",cn:1,note:"上海市眼病防治中心承办，聚焦眼科人工智能"},
+ {s:"2026-06-05",e:"2026-06-06",a:"APTOS 2026",n:"第十一届亚太远程眼科学会年会（APTOS 2026）",p:"中国上海",u:"https://2026.asiateleophth.org/",cn:1,note:"上海市眼病防治中心承办，聚焦眼科人工智能"},
  {s:"2026-06-05",e:"2026-06-07",n:"第二届大连眼科前沿学术交流会暨滨城眼科新技术交流会",p:"辽宁大连",u:"",cn:1},
  {s:"2026-06-05",e:"2026-06-07",n:"中国非公立医疗机构协会眼科专委会第十届学术年会暨临床眼科年会",p:"辽宁沈阳",u:"",cn:1},
  {s:"2026-06-06",e:"2026-06-06",n:"协和眼科学术大会暨住院医日",p:"中国北京",u:"",cn:1},
@@ -158,7 +159,7 @@ var CONFS=[
   sub:"讲题征集已截止",
   reg:"在线/现场注册均可，AOA 会员享半价以上优惠，费用明细见官网；早鸟价已截止（3月31日）"},
  {s:"2026-06-20",e:"2026-06-20",n:"日本近视学会年会",p:"日本东京",u:""},
- {s:"2026-06-26",e:"2026-06-28",a:"JSCRS 2026",n:"日本白内障屈光手术学术年会（JSCRS 2026）",p:"日本大阪",u:""},
+ {s:"2026-06-26",e:"2026-06-28",a:"JSCRS 2026",n:"日本白内障屈光手术学术年会（JSCRS 2026）",p:"日本大阪",u:"https://www.c-linkage.co.jp/jscrs41/"},
 
  {s:"2026-06-26",e:"2026-06-29",a:"WOC 2026",n:"第四十届世界眼科大会（WOC 2026）",p:"捷克布拉格",u:"https://icowoc.org/",
   sub:"摘要已截止",
@@ -261,8 +262,8 @@ var CONFS=[
  {s:"2026-11-07",e:"2026-11-07",n:"2026年同仁儿童眼底病论坛",p:"中国北京",u:"",cn:1},
  {s:"2026-11-27",e:"2026-11-29",n:"2026北京医学会眼科学分会学术年会暨第十二届同仁眼科新技术交流会",p:"中国北京",u:"",cn:1},
 
- {s:"2026-12-03",e:"2026-12-06",a:"FLORetina ICOOR 2026",n:"FLORetina ICOOR 2026（第14届国际 OCT 与 OCTA 大会）",p:"意大利佛罗伦萨 · Fortezza da Basso",u:""},
- {s:"2026-12-04",e:"2026-12-06",a:"JRVS 2026",n:"第65届日本视网膜和玻璃体学会年会（JRVS 2026）",p:"日本东京",u:""},
+ {s:"2026-12-03",e:"2026-12-06",a:"FLORetina ICOOR 2026",n:"FLORetina ICOOR 2026（第14届国际 OCT 与 OCTA 大会）",p:"意大利佛罗伦萨 · Fortezza da Basso",u:"https://www.floretina.com/"},
+ {s:"2026-12-04",e:"2026-12-06",a:"JRVS 2026",n:"第65届日本视网膜和玻璃体学会年会（JRVS 2026）",p:"日本东京 · 东京国际论坛",u:"https://convention.jtbcom.co.jp/65moumaku/"},
   {s:"2026-12-25",e:"2026-12-26",n:"天津医科大学总医院眼科GX峰会",p:"中国天津",u:"",cn:1},
 
  {s:"2027-02-26",e:"2027-02-27",a:"EURETINA SFM 2027",n:"EURETINA 专题会议 2027：遗传性视网膜疾病（Special Focus Meeting – Inherited Retinal Diseases）",p:"斯洛文尼亚卢布尔雅那",u:"https://euretina.org/sfm-2027/",note:"会场待官宣"},
@@ -430,7 +431,7 @@ function card(c,cnt){
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
   +'<div class="acts">'
-  +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':'<span class="nolink">官网待补充</span>')
+  +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent((c.n).replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>')
   +'<span class="act'+(fav?" on":"")+'" onclick="toggleFav('+i+')">'+(fav?"★ 已收藏":"☆ 收藏")+'</span>'
   +(x.k!=="past"?'<span class="act" onclick="addCal('+i+')">📅 日历</span>':"")
   +'<span class="act" onclick="copyInfo('+i+')">📋 复制</span>'
