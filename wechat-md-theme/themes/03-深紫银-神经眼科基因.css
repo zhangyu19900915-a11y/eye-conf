@@ -1,0 +1,80 @@
+/* doocs/md 自定义 CSS · 深紫银（神经眼科/基因治疗）
+ * 规格：med-wechat-publishing §5（字号上限 15px，正文黑色，层级靠颜色/竖线/色块；无 flex/渐变/两端对齐）
+ * Markdown 写法对照见 wechat-md-theme/README.md
+ */
+
+/* 正文 */
+section, #output { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif; font-size: 15px; line-height: 1.8; color: #000000; text-align: left; }
+p { margin: 0 0 18px; padding: 0; font-size: 15px; line-height: 1.8; letter-spacing: 0; color: #000000; text-align: left; }
+strong { font-weight: bold; color: #000000; }
+em { font-style: normal; color: #4a2c6d; }
+a { color: #7e57c2; text-decoration: none; border-bottom: 1px solid #7e57c2; }
+.markup-highlight { background: none; padding: 0; border-radius: 0; font-weight: bold; color: #857745; }
+
+/* 主标题（#） */
+h1 { display: block; margin: 0 0 20px; padding: 0; border: none; background: none; font-size: 15px; font-weight: bold; line-height: 1.7; color: #4a2c6d; text-align: left; }
+
+/* 一级标题（##）：左侧点缀色竖线 */
+h2 { display: block; margin: 26px 0 14px; padding: 0 0 0 10px; border: none; border-left: 4px solid #b0a06a; background: none; font-size: 15px; font-weight: bold; line-height: 1.6; color: #4a2c6d; text-align: left; }
+
+/* 二级标题 A（###）：点缀色下划线 */
+h3 { display: table; margin: 20px 0 10px; padding: 0 0 2px; border: none; border-bottom: 2px solid #b0a06a; background: none; font-size: 15px; font-weight: bold; line-height: 1.6; color: #4a2c6d; text-align: left; }
+
+/* 二级标题 B（####）：强调色实心色块，与 ### 交替使用 */
+h4 { display: table; margin: 20px 0 10px; padding: 4px 12px; border: none; border-radius: 3px; background: #7e57c2; font-size: 14px; font-weight: bold; line-height: 1.6; color: #ffffff; text-align: left; }
+
+/* 小节说明（#####）：灰色竖线，用于「参考文献：」等辅助标题 */
+h5 { display: block; margin: 24px 0 6px; padding: 0 0 0 10px; border: none; border-left: 4px solid #8a8597; font-size: 14px; font-weight: bold; color: #8a8597; text-align: left; }
+h6 { margin: 16px 0 6px; font-size: 14px; font-weight: bold; color: #4a2c6d; text-align: left; }
+
+/* 列表 */
+ul, ol { margin: 0 0 18px; padding-left: 1em; color: #000000; text-align: left; }
+li { margin: 4px 0; font-size: 15px; line-height: 1.8; color: #000000; text-align: left; }
+
+/* 普通引用（>）= 导语/总揽框：浅主色底 + 点缀色左竖线 */
+blockquote { margin: 0 0 20px; padding: 12px 14px; border: none; border-left: 4px solid #b0a06a; border-radius: 0; background: #f5f2f9; font-style: normal; color: #000000; text-align: left; }
+blockquote > p { margin: 0 0 8px; font-size: 15px; line-height: 1.8; letter-spacing: 0; color: #000000; text-align: left; }
+blockquote > p:last-child { margin-bottom: 0; }
+
+/* 提示块公共部分：去掉图标与 flex 标题 */
+.markdown-alert-title { display: block; margin: 0 0 6px; font-size: 15px; font-weight: bold; text-align: left; }
+.markdown-alert svg, .markdown-alert-title svg { display: none; }
+blockquote.markdown-alert > p { font-size: 14px; }
+
+/* > [!TIP] 临床意义 —— 米金底 + 金边 */
+blockquote.markdown-alert-tip { border: 1px solid #b0a06a; border-radius: 4px; background: #f8f6ee; }
+.markdown-alert-tip .markdown-alert-title { color: #857745; }
+
+/* > [!NOTE] 专家点评 —— 浅主色底 + 强调色左竖线 */
+blockquote.markdown-alert-note { border: none; border-left: 4px solid #7e57c2; border-radius: 0; background: #f5f2f9; }
+.markdown-alert-note .markdown-alert-title { color: #7e57c2; }
+
+/* > [!IMPORTANT] 研究速览 —— 主色描边卡 + 主色标题条 */
+blockquote.markdown-alert-important { padding: 0 14px 12px; border: 1px solid #4a2c6d; border-radius: 4px; background: #ffffff; }
+.markdown-alert-important .markdown-alert-title { margin: 0 -14px 10px; padding: 6px 14px; background: #4a2c6d; font-size: 14px; color: #ffffff; }
+
+/* > [!QUOTE] 参考文献 —— 13px 灰色 */
+blockquote.markdown-alert-quote { padding: 0; border: none; background: none; }
+.markdown-alert-quote .markdown-alert-title { padding-left: 10px; border-left: 4px solid #8a8597; font-size: 14px; color: #8a8597; }
+blockquote.markdown-alert-quote > p, blockquote.markdown-alert-quote li { margin: 0 0 4px; font-size: 13px; line-height: 1.7; color: #8a8597; }
+blockquote.markdown-alert-quote ol { margin: 0; color: #8a8597; }
+
+/* > [!WARNING] 合规提示（如「该适应证国内尚未获批」） */
+blockquote.markdown-alert-warning { border: none; border-left: 4px solid #8a8597; background: #f4f5f6; }
+.markdown-alert-warning .markdown-alert-title { font-size: 14px; color: #8a8597; }
+
+/* 图片与图注 */
+figure { margin: 0 0 20px; text-align: center; }
+img { max-width: 100%; margin: 0 auto; border-radius: 0; }
+figcaption, .md-figcaption { margin-top: 6px; font-size: 12px; line-height: 1.6; color: #8a8597; text-align: center; }
+
+/* 表格 */
+table { width: 100%; margin: 0 0 20px; border-collapse: collapse; font-size: 14px; color: #000000; }
+thead { background: #4a2c6d; }
+th { padding: 6px 8px; border: 1px solid #4a2c6d; background: #4a2c6d; font-weight: bold; color: #ffffff; text-align: left; }
+td { padding: 6px 8px; border: 1px solid #dfe6ec; line-height: 1.6; color: #000000; text-align: left; }
+
+/* 分隔线、行内代码、脚注 */
+hr { height: 0; margin: 24px 0; border: none; border-top: 1px solid #e3e6e8; }
+.codespan, code { font-size: 13px; color: #4a2c6d; background: #f2f4f5; padding: 1px 4px; border-radius: 2px; }
+p.footnotes { margin: 0; font-size: 13px; line-height: 1.7; color: #8a8597; text-align: left; }
