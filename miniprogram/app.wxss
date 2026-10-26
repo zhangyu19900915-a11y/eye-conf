@@ -1,0 +1,6 @@
+page{background:#f4f6f9;color:#2c3e50;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:28rpx}
+.badge{display:inline-block;font-size:21rpx;font-weight:700;color:#fff;padding:2rpx 16rpx;border-radius:999rpx;margin-left:10rpx;vertical-align:2rpx}
+.badge.past{background:#95a5a6}.badge.now{background:#27ae60}.badge.soon{background:#d4a017}.badge.future{background:#2e86c1}
+.tag{display:inline-block;font-size:20rpx;color:#2e86c1;background:#eef5fb;border-radius:8rpx;padding:0 10rpx;margin-left:8rpx}
+.dl{display:inline-block;font-size:24rpx;color:#b03a2e;font-weight:700;background:#fdf0ee;border-radius:12rpx;padding:6rpx 14rpx;margin:10rpx 10rpx 0 0}
+.empty{text-align:center;color:#7f8c8d;padding:80rpx 30rpx;font-size:27rpx;background:#fff;border-radius:24rpx;line-height:1.8}
