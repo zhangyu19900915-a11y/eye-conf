@@ -1,0 +1,76 @@
+<view class="wrap">
+  <!-- 下一场重点会议 -->
+  <view class="next" wx:if="{{next}}" bindtap="open" data-id="{{next.id}}">
+    <view class="nk">⭐ 下一场重点国际会议</view>
+    <view class="nrow">
+      <view class="nnum">{{next.big}}<text class="nunit">{{next.unit}}</text></view>
+      <view class="ninfo">
+        <view class="nname">{{next.name}}</view>
+        <view class="nmeta">{{next.date}}</view>
+        <view class="nmeta">{{next.place}}</view>
+      </view>
+    </view>
+    <view class="nx2" wx:if="{{next.next2}}">再下一场：{{next.next2}}</view>
+  </view>
+
+  <!-- 30 天内节点 -->
+  <view class="hot" wx:if="{{hot.length}}">
+    <view class="hott">⏰ 30 天内截止 / 开启</view>
+    <view class="hotl" wx:for="{{hot}}" wx:key="ts" bindtap="open" data-id="{{item.id}}">
+      <text class="hotd">{{item.date}}</text> {{item.name}} · {{item.t}}（{{item.left ? '剩 ' + item.left + ' 天' : '今天'}}）
+    </view>
+  </view>
+
+  <!-- 搜索与筛选 -->
+  <view class="bar">
+    <input class="q" placeholder="搜索会议 / 城市 / 国家…" value="{{q}}" bindinput="onSearch" confirm-type="search" />
+    <scroll-view scroll-x class="chips" enhanced show-scrollbar="{{false}}">
+      <view wx:for="{{filters}}" wx:key="*this" class="chip {{f === item ? 'on' : ''}}" bindtap="onFilter" data-v="{{item}}">{{item}}</view>
+    </scroll-view>
+    <scroll-view scroll-x class="chips dirs" enhanced show-scrollbar="{{false}}">
+      <view wx:for="{{dirs}}" wx:key="*this" class="chip {{d === item ? 'on' : ''}}" bindtap="onDir" data-v="{{item}}">{{item}}</view>
+    </scroll-view>
+  </view>
+  <view class="stats">{{stats}}</view>
+
+  <!-- 截止节点视图 -->
+  <block wx:if="{{f === '📮 截止节点'}}">
+    <view wx:if="{{!dlGroups.length}}" class="empty">当前筛选下没有待到的截止节点</view>
+    <block wx:for="{{dlGroups}}" wx:key="key" wx:for-item="g">
+      <view class="month">{{g.key}}</view>
+      <view class="dlrow" wx:for="{{g.items}}" wx:key="ts" bindtap="open" data-id="{{item.id}}">
+        <view class="dld">{{item.date}}<view class="dlb {{item.level}}">{{item.left ? item.left + ' 天' : '今天'}}</view></view>
+        <view class="dlt"><view class="dln">{{item.name}}</view><view class="dlx">{{item.t}}</view></view>
+        <view class="arrow">›</view>
+      </view>
+    </block>
+  </block>
+
+  <!-- 会议列表 -->
+  <block wx:else>
+    <view wx:if="{{!groups.length}}" class="empty">
+      <block wx:if="{{f === '☆ 我的收藏'}}"><view>还没有收藏</view><view>进入会议详情点「☆ 收藏」，就能在这里集中查看</view></block>
+      <block wx:else>没有符合条件的会议</block>
+    </view>
+    <block wx:for="{{groups}}" wx:key="key" wx:for-item="g">
+      <view class="month">{{g.key}}</view>
+      <view class="card {{item.core ? 'core' : ''}} {{item.st.k === 'past' ? 'past' : ''}}" wx:for="{{g.items}}" wx:key="id" bindtap="open" data-id="{{item.id}}">
+        <view class="dt">
+          <view class="m">{{item.month}}月</view>
+          <view class="d">{{item.day}}</view>
+          <view class="len">{{item.range}}</view>
+        </view>
+        <view class="bd">
+          <view class="nm"><text wx:if="{{item.core}}" class="star">⭐ </text>{{item.n}}<text class="badge {{item.st.k}}">{{item.st.text}}</text><text wx:if="{{item.fav}}" class="favmark"> ★</text></view>
+          <view class="meta">📍 {{item.p}}<text class="tag" wx:for="{{item.dirs}}" wx:for-item="t" wx:key="*this">{{t}}</text></view>
+          <view wx:for="{{item.hots}}" wx:for-item="h" wx:key="t" class="dl">⏰ {{h.date}} {{h.t}}（{{h.leftText}}）</view>
+        </view>
+      </view>
+    </block>
+  </block>
+
+  <view class="foot">
+    <view>本表由《医学进行时》收集整理 · 数据更新于 {{updated}}</view>
+    <view>会议信息以各会议官方通知为准 · 更新或纠错请联系微信 15810865775</view>
+  </view>
+</view>

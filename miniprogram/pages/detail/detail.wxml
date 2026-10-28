@@ -1,0 +1,51 @@
+<view class="wrap" wx:if="{{v}}">
+  <view class="head {{v.core ? 'core' : ''}}">
+    <view class="ttl"><text wx:if="{{v.core}}" class="star">⭐ </text>{{v.n}}</view>
+    <view class="row"><text class="badge {{v.st.k}}">{{v.st.text}}</text><text class="tag" wx:for="{{v.dirs}}" wx:key="*this">{{item}}</text></view>
+    <view class="info">📅 {{v.year}}年{{v.range}}</view>
+    <view class="info">📍 {{v.p}}</view>
+  </view>
+
+  <view class="sec" wx:if="{{v.hots.length}}">
+    <view class="st">⏰ 待到节点</view>
+    <view wx:for="{{v.hots}}" wx:key="t" class="dl">{{item.date}} {{item.t}}（{{item.leftText}}）</view>
+  </view>
+
+  <view class="sec" wx:if="{{v.sub || v.reg || v.note || v.offHots.length}}">
+    <view class="st">投稿与注册</view>
+    <view class="line" wx:if="{{v.sub}}">📝 投稿：{{v.sub}}</view>
+    <view class="line" wx:if="{{v.reg}}">🎫 注册：{{v.reg}}</view>
+    <view class="line" wx:if="{{v.note}}">ℹ️ {{v.note}}</view>
+    <view class="line off" wx:for="{{v.offHots}}" wx:key="*this">✕ {{item}}</view>
+  </view>
+
+  <view class="sec" wx:if="{{v.fees}}">
+    <view class="st">💰 注册费</view>
+    <scroll-view scroll-x class="tw">
+      <view class="tb">
+        <view class="tr th"><view class="td" wx:for="{{v.feeHead}}" wx:key="index">{{item}}</view></view>
+        <view class="tr" wx:for="{{v.fees}}" wx:for-item="r" wx:key="index"><view class="td" wx:for="{{r}}" wx:key="index">{{item}}</view></view>
+      </view>
+    </scroll-view>
+    <block wx:if="{{v.fees2}}">
+      <view class="f2t">{{v.fee2Title}}</view>
+      <scroll-view scroll-x class="tw">
+        <view class="tb">
+          <view class="tr th"><view class="td" wx:for="{{v.fee2Head}}" wx:key="index">{{item}}</view></view>
+          <view class="tr" wx:for="{{v.fees2}}" wx:for-item="r" wx:key="index"><view class="td" wx:for="{{r}}" wx:key="index">{{item}}</view></view>
+        </view>
+      </scroll-view>
+    </block>
+    <view class="fn" wx:if="{{v.feeNote}}">{{v.feeNote}}</view>
+  </view>
+
+  <view class="acts">
+    <button class="btn {{v.fav ? 'on' : ''}}" bindtap="onFav">{{v.fav ? '★ 已收藏' : '☆ 收藏'}}</button>
+    <button class="btn" wx:if="{{v.st.k !== 'past'}}" bindtap="onCalendar">📅 加入日历</button>
+    <button class="btn" bindtap="onCopyInfo">📋 复制信息</button>
+    <button class="btn" open-type="share">↗ 转发</button>
+  </view>
+  <button class="main" wx:if="{{v.u}}" bindtap="onCopyUrl">复制官网链接</button>
+  <button class="main alt" wx:else bindtap="onCopyKeyword">{{v.cn ? '复制检索词（微信搜会议通知）' : '复制检索词（谷歌搜官网）'}}</button>
+  <view class="tip">加入日历会提醒：开幕前 7 天，以及每个投稿/注册截止前 3 天</view>
+</view>

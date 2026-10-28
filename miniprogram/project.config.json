@@ -1,0 +1,16 @@
+{
+  "description": "眼科会议速查 · 医学进行时",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "./",
+  "appid": "touristappid",
+  "projectname": "eye-conf",
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "urlCheck": true
+  },
+  "libVersion": "3.4.0",
+  "condition": {}
+}
