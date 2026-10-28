@@ -7,7 +7,8 @@ const DIRS = [
   ['青光眼', /青光眼|glaucoma|ags |apgc|wgc|egs/i],
   ['视光·近视', /视光|近视|optometry|academy|vision china|brightchina/i],
   ['小儿·斜视', /小儿|儿童|斜视|aapos/i],
-  ['神经·眼眶', /神经眼科|眼眶|甲状腺|泪器/i],
+  ['神经眼科', /神经眼科|nanos|eunos/i],
+  ['眼眶·眼整形', /眼眶|眼整形|甲状腺|泪器|眼肿瘤|asoprs|esoprs|isoo/i],
   ['眼表·干眼', /干眼|眼表|角膜/i]
 ];
 const DIR_NAMES = ['全部方向'].concat(DIRS.map(d => d[0]), ['综合']);
