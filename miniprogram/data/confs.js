@@ -136,7 +136,7 @@ module.exports = {
    "host": 1,
    "core": 1,
    "contact": {
-    "wx": "wxid_e8j9eq8bb8jr22",
+    "wx": "13396674443",
     "tel": "13396674443",
     "name": "李辉"
    },
@@ -311,7 +311,7 @@ module.exports = {
    "host": 1,
    "core": 1,
    "contact": {
-    "wx": "paris-cat",
+    "wx": "18204171199",
     "tel": "18204171199",
     "name": "曹婉婷"
    },
@@ -360,7 +360,7 @@ module.exports = {
    "host": 1,
    "core": 1,
    "contact": {
-    "wx": "paris-cat",
+    "wx": "18204171199",
     "tel": "18204171199",
     "name": "曹婉婷"
    },
@@ -395,7 +395,7 @@ module.exports = {
    "host": 1,
    "core": 1,
    "contact": {
-    "wx": "wxid_e8j9eq8bb8jr22",
+    "wx": "13396674443",
     "tel": "13396674443",
     "name": "李辉"
    },
