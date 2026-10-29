@@ -320,7 +320,7 @@ function ymd(d){return d.getFullYear()+("0"+(d.getMonth()+1)).slice(-2)+("0"+d.g
 function icsEsc(t){return String(t).replace(/<[^>]+>/g,"").replace(/([,;\\])/g,"\\$1").replace(/\n/g,"\\n");}
 function icsEvents(c){
  var ev=[],stamp=ymd(today)+"T000000Z",e1=pd(c.e);e1.setDate(e1.getDate()+1);
- var desc=[c.sub?"投稿："+c.sub:"",c.reg?"注册："+c.reg:"",c.note||"",c.u?"官网："+c.u:"",c.host&&contactOf(c).wx?"会务微信："+contactOf(c).wx:"",c.host&&contactOf(c).tel?"会务电话："+contactOf(c).tel:"","—— 来自《医学进行时》眼科会议速查"].filter(Boolean).join("\n");
+ var desc=[c.sub?"投稿："+c.sub:"",c.reg?"注册："+c.reg:"",c.note||"",c.u?"官网："+c.u:"",c.host&&contactOf(c).wx?"咨询微信："+contactOf(c).wx:"",c.host&&contactOf(c).tel?"咨询电话："+contactOf(c).tel:"","—— 来自《医学进行时》眼科会议速查"].filter(Boolean).join("\n");
  ev.push(["BEGIN:VEVENT","UID:"+ymd(pd(c.s))+"-"+encodeURIComponent(c.a||c.n).slice(0,40)+"@eyeconf","DTSTAMP:"+stamp,
   "DTSTART;VALUE=DATE:"+ymd(pd(c.s)),"DTEND;VALUE=DATE:"+ymd(e1),"SUMMARY:"+icsEsc(c.a||c.n),"LOCATION:"+icsEsc(c.p),
   "DESCRIPTION:"+icsEsc(c.n+"\n"+desc),(c.u?"URL:"+c.u:""),
@@ -354,23 +354,23 @@ function copyInfo(i){
  (c.hots||[]).forEach(function(h){var d=pd(h.d);if(d>=today)L.push("⏰ "+md(d)+" "+h.t);});
  if(c.sub)L.push("📝 投稿："+c.sub);
  if(c.reg)L.push("🎫 注册："+c.reg);
- if(c.host){var k=contactOf(c);if(signupOf(c))L.push("✍️ 报名："+signupOf(c));if(k.tel)L.push("☎️ 会务电话："+k.tel);if(k.wx)L.push("💬 会务微信："+k.wx);}
+ if(c.host){var k=contactOf(c);if(signupOf(c))L.push("✍️ 报名："+signupOf(c));if(k.tel)L.push("☎️ 咨询电话："+k.tel);if(k.wx)L.push("💬 咨询微信："+k.wx);}
  else if(c.u)L.push("🔗 "+c.u);
  L.push("—— 《医学进行时》眼科会议速查 "+location.href.split("#")[0]);
  copyText(L.join("\n"));
 }
 
-/* ---------- 会务咨询（host:1 的会议） ---------- */
-// 默认会务联系方式；单场会议可用 contact:{wx,tel,qr,name} 覆盖，报名链接用 signup 字段（缺省用官网）
+/* ---------- 参会咨询（host:1 的会议） ---------- */
+// 默认参会咨询联系方式；单场会议可用 contact:{wx,tel,qr,name} 覆盖，报名链接用 signup 字段（缺省用官网）
 var HOST_CONTACT={wx:"15810865775",tel:"",qr:"",name:""};
 function contactOf(c){var o={},k;for(k in HOST_CONTACT)o[k]=HOST_CONTACT[k];if(c.contact)for(k in c.contact)o[k]=c.contact[k];return o;}
 function signupOf(c){return c.signup||c.u||"";}
 function openContact(i){
- var c=CONFS[i],k=contactOf(c),h='<div class="shh">会务咨询</div><div class="shn">'+(c.a||c.n)+'</div>';
+ var c=CONFS[i],k=contactOf(c),h='<div class="shh">参会咨询</div><div class="shn">'+(c.a||c.n)+'</div>';
  if(k.name)h+='<div class="shr"><span>联系人</span><b>'+k.name+'</b></div>';
  if(k.tel)h+='<div class="shr"><span>电话</span><b>'+k.tel+'</b><a class="shb" href="tel:'+k.tel+'">拨打</a></div>';
  if(k.wx)h+='<div class="shr"><span>微信</span><b>'+k.wx+'</b><span class="shb" onclick="copyText(\''+k.wx+'\')">复制</span></div>';
- if(k.qr)h+='<div class="shq"><img src="'+k.qr+'" alt="会务二维码"><div>长按识别二维码</div></div>';
+ if(k.qr)h+='<div class="shq"><img src="'+k.qr+'" alt="咨询二维码"><div>长按识别二维码</div></div>';
  h+='<div class="sht">添加微信时请备注「会议名称＋姓名＋单位」</div>';
  if(signupOf(c))h+='<a class="shgo" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a>';
  h+='<div class="shx" onclick="closeContact()">关闭</div>';
@@ -395,7 +395,7 @@ function card(c,cnt){
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
   +'<div class="acts">'
-  +(c.host&&signupOf(c)?'<a class="go gold" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a><span class="act host" onclick="openContact('+i+')">💬 会务咨询</span>'
+  +(c.host&&signupOf(c)?'<a class="go gold" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a><span class="act host" onclick="openContact('+i+')">💬 参会咨询</span>'
    :c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':(c.cn?'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent(c.n.replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>'
    :'<a class="go alt" href="https://www.google.com/search?q='+encodeURIComponent(c.g||((c.a||c.n)+" official website"))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="官网待核实，用谷歌搜索">🔍 谷歌搜官网</a>'))
   +'<span class="act'+(fav?" on":"")+'" onclick="toggleFav('+i+')">'+(fav?"★ 已收藏":"☆ 收藏")+'</span>'
