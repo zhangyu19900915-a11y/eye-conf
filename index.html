@@ -175,6 +175,7 @@ var CONFS=[
  {s:"2026-11-05",e:"2026-11-08",n:"中华中医药学会眼科分会第二十五次学术年会",p:"广东深圳",u:"https://www.cacm.org.cn/2026/10/15/41249/",cn:1},
  {host:1,core:1,contact:{wx:"WoeHong-1001",tel:"15001130092",name:"王金宏"},s:"2026-11-06",e:"2026-11-07",n:"山东省眼科学会第一届眼科学术大会",p:"山东济南",u:"https://mm.sciconf.cn/cn/minisite/index/40091",cn:1},
  {s:"2026-11-06",e:"2026-11-07",host:1,core:1,contact:{wx:"13396674443",tel:"13396674443",name:"李辉"},n:"第十九届山东省眼科临床专业质量控制培训会",p:"山东济南",u:"https://sdzk2026.sciconf.cn",cn:1,note:"11月6日下午开始"},
+ {s:"2026-11-07",e:"2026-11-08",host:1,core:1,n:"2026 APEC 医学人工智能高峰论坛",p:"中国北京",u:"",cn:1},
  {s:"2026-11-08",e:"2026-11-08",host:1,core:1,contact:{wx:"15618096241",tel:"15618096241",name:"陈琛"},n:"2026年中国民族卫生协会眼学科分会年会",p:"山东济南",u:"https://2026minxie.sciconf.cn",cn:1},
  {s:"2026-11-06",e:"2026-11-09",a:"RANZCO 2026",n:"第57届澳大利亚和新西兰皇家眼科医师学院年会（RANZCO 2026）",p:"新西兰奥克兰 · NZICC 国际会议中心",u:"https://ranzco2026.com/",note:"约1800名代表；十年来首次在新西兰举办"},
  {s:"2026-11-07",e:"2026-11-07",n:"2026年同仁儿童眼底病论坛",p:"中国北京",u:"",cn:1},
@@ -369,7 +370,7 @@ function copyInfo(i){
 
 /* ---------- 参会咨询（host:1 的会议） ---------- */
 // 默认参会咨询联系方式；单场会议可用 contact:{wx,tel,qr,name} 覆盖，报名链接用 signup 字段（缺省用官网）
-var HOST_CONTACT={wx:"15810865775",tel:"",qr:"",name:""};
+var HOST_CONTACT={wx:"",tel:"",qr:"",name:""};
 function contactOf(c){var o={},k;for(k in HOST_CONTACT)o[k]=HOST_CONTACT[k];if(c.contact)for(k in c.contact)o[k]=c.contact[k];return o;}
 function signupOf(c){return c.signup||c.u||"";}
 function openContact(i){
@@ -388,6 +389,8 @@ function creditBtn(c,i){
  return c.credit?'<a class="act" href="'+c.credit+'" target="_blank" rel="noopener" onclick="bump('+i+')">🎓 学分查询</a>'
   :'<span class="act dim" onclick="toast(\'学分查询入口暂未开放，会后更新\')">🎓 学分查询</span>';
 }
+function hasContact(c){var k=contactOf(c);return !!(k.wx||k.tel);}
+function hostExtra(c,i){return (hasContact(c)?'<span class="act host" onclick="openContact('+i+')">💬 参会咨询</span>':'')+creditBtn(c,i);}
 function closeContact(){document.getElementById("sheet").className="";}
 
 /* ---------- 卡片 ---------- */
@@ -407,8 +410,8 @@ function card(c,cnt){
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
   +'<div class="acts">'
-  +(c.host&&signupOf(c)?'<a class="go gold" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a><span class="act host" onclick="openContact('+i+')">💬 参会咨询</span>'+creditBtn(c,i)
-   :c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':(c.cn?'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent(c.n.replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>'
+  +(c.host&&signupOf(c)?'<a class="go gold" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a>'+hostExtra(c,i)
+   :c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':(c.cn?'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent(c.n.replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>'+(c.host?hostExtra(c,i):'')
    :'<a class="go alt" href="https://www.google.com/search?q='+encodeURIComponent(c.g||((c.a||c.n)+" official website"))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="官网待核实，用谷歌搜索">🔍 谷歌搜官网</a>'))
   +'<span class="act'+(fav?" on":"")+'" onclick="toggleFav('+i+')">'+(fav?"★ 已收藏":"☆ 收藏")+'</span>'
   +(x.k!=="past"?'<span class="act" onclick="addCal('+i+')">📅 日历</span>':"")
