@@ -66,7 +66,7 @@ function all() { return DATA.list; }
 function updated() { return DATA.updated; }
 
 function nextCore(t) {
-  const l = DATA.list.map((c, i) => ({ c, i })).filter(x => x.c.core && status(x.c, t).k !== 'past')
+  const l = DATA.list.map((c, i) => ({ c, i })).filter(x => x.c.core && !x.c.cn && status(x.c, t).k !== 'past')
     .sort((a, b) => pd(a.c.s) - pd(b.c.s));
   if (!l.length) return null;
   const f = l[0], st = status(f.c, t);
