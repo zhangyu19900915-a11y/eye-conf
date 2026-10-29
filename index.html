@@ -117,6 +117,7 @@ box-shadow:0 0 0 3px rgba(251,191,36,.14),0 10px 30px rgba(245,166,35,.22),inset
 .card.host::before{background:linear-gradient(180deg,#f59e0b,#fbbf24 50%,#fde68a);width:5px;box-shadow:0 0 10px rgba(245,158,11,.55)}
 .card.host .dt .d{color:#d97706}
 .go.gold{background:linear-gradient(135deg,#e08600,#f5a623 55%,#fbbf24);box-shadow:0 4px 14px rgba(245,166,35,.4),inset 0 1px 0 rgba(255,255,255,.5);text-shadow:0 1px 2px rgba(120,60,0,.25)}
+.act.dim{color:#94a3b8;border-color:rgba(255,255,255,.9);background:rgba(255,255,255,.45)}
 .act.host{color:#b45309;border-color:rgba(245,166,35,.45);background:rgba(255,247,230,.8)}
 #sheet{position:fixed;inset:0;z-index:20;background:rgba(15,23,42,.28);display:none;align-items:flex-end;justify-content:center}
 #sheet.show{display:flex}
@@ -376,6 +377,11 @@ function openContact(i){
  h+='<div class="shx" onclick="closeContact()">关闭</div>';
  document.getElementById("sheetBody").innerHTML=h;document.getElementById("sheet").className="show";
 }
+// 学分查询：会议数据里填 credit:"链接" 即生效；未填时按钮置灰并提示
+function creditBtn(c,i){
+ return c.credit?'<a class="act" href="'+c.credit+'" target="_blank" rel="noopener" onclick="bump('+i+')">🎓 学分查询</a>'
+  :'<span class="act dim" onclick="toast(\'学分查询入口暂未开放，会后更新\')">🎓 学分查询</span>';
+}
 function closeContact(){document.getElementById("sheet").className="";}
 
 /* ---------- 卡片 ---------- */
@@ -395,7 +401,7 @@ function card(c,cnt){
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
   +'<div class="acts">'
-  +(c.host&&signupOf(c)?'<a class="go gold" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a><span class="act host" onclick="openContact('+i+')">💬 参会咨询</span>'
+  +(c.host&&signupOf(c)?'<a class="go gold" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a><span class="act host" onclick="openContact('+i+')">💬 参会咨询</span>'+creditBtn(c,i)
    :c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':(c.cn?'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent(c.n.replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>'
    :'<a class="go alt" href="https://www.google.com/search?q='+encodeURIComponent(c.g||((c.a||c.n)+" official website"))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="官网待核实，用谷歌搜索">🔍 谷歌搜官网</a>'))
   +'<span class="act'+(fav?" on":"")+'" onclick="toggleFav('+i+')">'+(fav?"★ 已收藏":"☆ 收藏")+'</span>'
