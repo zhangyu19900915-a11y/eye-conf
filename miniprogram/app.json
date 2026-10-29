@@ -4,10 +4,10 @@
     "pages/detail/detail"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#1a5276",
+    "navigationBarBackgroundColor": "#1677ff",
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "眼科会议速查",
-    "backgroundColor": "#f4f6f9",
+    "backgroundColor": "#f3f8ff",
     "backgroundTextStyle": "dark"
   },
   "style": "v2",

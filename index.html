@@ -6,88 +6,112 @@
 <meta name="description" content="2026年国内外眼科学术会议时间、地点、投稿窗口、优惠截止与注册费明细速查">
 <title>2026–2027 眼科会议速查</title>
 <style>
+:root{--blue:#1677ff;--sky:#38bdf8;--gold:#f5a623;--gold-d:#c9820a;--ink:#1f2d3d;--muted:#64748b;--red:#ef4444;--green:#10b981;
+--glass:rgba(255,255,255,.58);--glass-b:rgba(255,255,255,.8);--shadow:0 8px 28px rgba(22,90,180,.10)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f4f6f9;color:#2c3e50;padding:14px 12px 50px}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);padding:14px 12px 50px;min-height:100vh;
+background:#eef6ff}
+/* 背景光斑：给玻璃提供可折射的色彩 */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(42vmax 42vmax at 8% 6%,rgba(56,189,248,.55),transparent 60%),
+radial-gradient(38vmax 38vmax at 95% 18%,rgba(245,166,35,.38),transparent 60%),
+radial-gradient(46vmax 46vmax at 85% 92%,rgba(22,119,255,.32),transparent 60%),
+radial-gradient(36vmax 36vmax at 5% 85%,rgba(52,211,153,.30),transparent 60%),#f3f8ff}
 .wrap{max-width:760px;margin:0 auto}
-header{border-bottom:3px solid #d4a017;padding-bottom:10px;margin-bottom:10px}
-h1{color:#1a5276;font-size:21px;letter-spacing:1px}
-.sub{color:#7f8c8d;font-size:12px;margin-top:5px;line-height:1.7}
-#hot{background:#fff8e8;border:1px solid #f0d9a0;border-radius:10px;padding:10px 12px;font-size:13px;line-height:1.95;margin-bottom:10px;color:#8a6d0b}
-#hot b{color:#b03a2e}
-.bar{background:#fff;border-radius:12px;padding:10px;box-shadow:0 1px 4px rgba(26,82,118,.08);margin-bottom:10px}
-#q{width:100%;padding:9px 12px;font-size:15px;border:1.5px solid #d6e4ee;border-radius:9px;outline:none;color:#2c3e50}
-#q:focus{border-color:#2e86c1}
-.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
-.chip{padding:5px 13px;border-radius:999px;font-size:13px;background:#eef3f7;color:#1a5276;cursor:pointer;user-select:none}
-.chip.on{background:#1a5276;color:#fff}
-#stats{font-size:12px;color:#7f8c8d;margin:0 2px 4px}
-.month{font-size:13px;font-weight:700;color:#d4a017;margin:16px 2px 6px;letter-spacing:2px}
-.card{background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:9px;box-shadow:0 1px 4px rgba(26,82,118,.08);display:flex;gap:12px;border-left:4px solid #2e86c1}
-.card.core{border-left-color:#d4a017}
+/* 液态玻璃 */
+.glass,header,#hot,.bar,.card,.dlrow,.empty,footer{position:relative;background:var(--glass);
+-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+border:1px solid var(--glass-b);box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.35)}
+header::after,#hot::after,.bar::after,.card::after,.dlrow::after,#next::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+background:linear-gradient(135deg,rgba(255,255,255,.55) 0%,rgba(255,255,255,0) 38%,rgba(255,255,255,0) 70%,rgba(255,255,255,.18) 100%)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+ .glass,header,#hot,.bar,.card,.dlrow,.empty,footer{background:rgba(255,255,255,.92)}}
+header{border-radius:22px;padding:16px 14px 14px;margin-bottom:12px;text-align:left}
+h1{font-size:21px;letter-spacing:1px;background:linear-gradient(90deg,#0b5bd3,#1677ff 45%,#0ea5e9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);font-size:12px;margin-top:5px;line-height:1.7}
+#hot{border-radius:18px;padding:11px 14px;font-size:13px;line-height:1.95;margin-bottom:12px;color:#8a5a00;background:rgba(255,246,224,.62)}
+#hot b{color:var(--red)}
+.bar{border-radius:20px;padding:11px;margin-bottom:10px}
+#q{width:100%;padding:10px 14px;font-size:15px;border:1px solid rgba(255,255,255,.9);border-radius:14px;outline:none;color:var(--ink);
+background:rgba(255,255,255,.7);box-shadow:inset 0 1px 3px rgba(22,90,180,.08)}
+#q:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(56,189,248,.25)}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.chip{padding:6px 14px;border-radius:999px;font-size:13px;background:rgba(255,255,255,.62);color:#0b5bd3;cursor:pointer;user-select:none;
+border:1px solid rgba(255,255,255,.9);box-shadow:0 2px 8px rgba(22,90,180,.07),inset 0 1px 0 #fff;transition:all .2s}
+.chip.on{background:linear-gradient(135deg,#0b5bd3,#1677ff 55%,#2aa8f0);color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(0,40,120,.25);border-color:transparent;box-shadow:0 6px 16px rgba(22,119,255,.35),inset 0 1px 0 rgba(255,255,255,.45)}
+.chips.dirs{margin-top:8px;padding-top:9px;border-top:1px dashed rgba(22,90,180,.15)}
+.chips.dirs .chip{font-size:12px;padding:4px 12px;color:var(--gold-d)}
+.chips.dirs .chip.on{background:linear-gradient(135deg,#e08600,#f5a623);color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(120,60,0,.25);box-shadow:0 6px 16px rgba(245,166,35,.35),inset 0 1px 0 rgba(255,255,255,.5)}
+#stats{font-size:12px;color:var(--muted);margin:2px 4px 4px}
+.month{font-size:13px;font-weight:700;color:var(--gold-d);margin:18px 4px 8px;letter-spacing:2px}
+.card{border-radius:18px;padding:13px 15px 13px 18px;margin-bottom:10px;display:flex;gap:12px;overflow:hidden}
+.card::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,#1677ff,#38bdf8)}
+.card.core::before{background:linear-gradient(180deg,#f5a623,#fbbf24)}
 .card.past{opacity:.62}
 .dt{flex:none;width:56px;text-align:center;padding-top:2px}
-.dt .m{font-size:11px;color:#7f8c8d}
-.dt .d{font-size:19px;font-weight:800;color:#1a5276;line-height:1.25}
-.dt .len{font-size:10.5px;color:#7f8c8d}
+.dt .m{font-size:11px;color:var(--muted)}
+.dt .d{font-size:21px;font-weight:800;color:var(--blue);line-height:1.25}
+.dt .len{font-size:10.5px;color:var(--muted)}
 .bd{flex:1;min-width:0}
 .nm{font-size:14.5px;font-weight:600;line-height:1.5}
-.star{color:#d4a017;font-size:12px;font-weight:700}
-.meta{font-size:12.5px;color:#566573;margin-top:4px}
-.badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:2px 9px;border-radius:999px;margin-left:6px;vertical-align:1px}
-.dl{font-size:12.5px;color:#b03a2e;font-weight:700;margin-top:5px;background:#fdf0ee;border-radius:6px;padding:4px 8px;display:inline-block;margin-right:5px}
-.ex{font-size:12px;color:#7f8c8d;margin-top:5px;line-height:1.65}
-.ex .off{color:#aab4bc}
-.go{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:600;color:#fff;background:#1a5276;padding:5px 13px;border-radius:7px;text-decoration:none}
+.star{color:var(--gold);font-size:12px;font-weight:700}
+.meta{font-size:12.5px;color:#475569;margin-top:4px}
+.badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;padding:2px 9px;border-radius:999px;margin-left:6px;vertical-align:1px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
+.dl{font-size:12.5px;color:#dc2626;font-weight:700;margin-top:6px;background:rgba(254,226,226,.7);border:1px solid rgba(255,255,255,.8);border-radius:10px;padding:4px 9px;display:inline-block;margin-right:5px}
+.ex{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.65}
+.ex .off{color:#a8b3c2}
+.go{display:inline-block;margin-top:8px;font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#1677ff,#38bdf8);padding:5px 13px;border-radius:10px;text-decoration:none;box-shadow:0 4px 12px rgba(22,119,255,.3),inset 0 1px 0 rgba(255,255,255,.4)}
 .fd{margin-top:7px}
-.fd summary{font-size:12.5px;font-weight:600;color:#1a5276;cursor:pointer;user-select:none}
+.fd summary{font-size:12.5px;font-weight:600;color:var(--blue);cursor:pointer;user-select:none}
 .fd[open] summary{margin-bottom:5px}
 .ft{overflow-x:auto}
 .fd table{border-collapse:collapse;font-size:11.5px;margin-top:3px;min-width:280px}
-.fd th{background:#eef3f7;color:#1a5276;font-weight:600;padding:4px 8px;text-align:left;white-space:nowrap}
-.fd td{padding:4px 8px;border-bottom:1px solid #eef2f5;white-space:nowrap}
-.fd .f2t{font-size:12px;font-weight:600;color:#566573;margin-top:7px}
-.fd .fn{font-size:11px;color:#95a5a6;margin-top:5px;line-height:1.6;white-space:normal}
-.nolink{display:inline-block;margin-top:8px;font-size:12px;color:#aab4bc}
-.hot{font-size:11px;font-weight:700;color:#e67e22;white-space:nowrap}
+.fd th{background:rgba(22,119,255,.08);color:#0b5bd3;font-weight:600;padding:4px 8px;text-align:left;white-space:nowrap}
+.fd td{padding:4px 8px;border-bottom:1px solid rgba(22,90,180,.08);white-space:nowrap}
+.fd .f2t{font-size:12px;font-weight:600;color:#475569;margin-top:7px}
+.fd .fn{font-size:11px;color:#94a3b8;margin-top:5px;line-height:1.6;white-space:normal}
+.nolink{display:inline-block;margin-top:8px;font-size:12px;color:#a8b3c2}
+.hot{font-size:11px;font-weight:700;color:#f97316;white-space:nowrap}
 .blogo{height:64px;width:auto;display:block;margin:0 auto 8px}
-.qrwrap{text-align:center;margin-top:13px;padding-top:12px;border-top:1px dashed #e3e9ef}
-.qrwrap img{width:140px;height:140px;display:inline-block;border:1px solid #e3e9ef;border-radius:8px}
-.qrcap{font-size:11.5px;color:#7f8c8d;margin-top:6px;line-height:1.7}
-.qrcap b{color:#1a5276}
-.empty{text-align:center;color:#7f8c8d;padding:40px 0;font-size:14px;background:#fff;border-radius:12px}
-.chips.dirs{margin-top:7px;padding-top:8px;border-top:1px dashed #e3e9ef}
-.chips.dirs .chip{font-size:12px;padding:4px 11px;background:#fbf6e7;color:#8a6d0b}
-.chips.dirs .chip.on{background:#d4a017;color:#fff}
-.tag{display:inline-block;font-size:10.5px;color:#2e86c1;background:#eef5fb;border-radius:4px;padding:0 5px;margin-right:4px;vertical-align:1px}
-.acts{margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:5px}
-.acts .go{padding:5px 11px}
-.go.alt{background:#fff;color:#1a5276;border:1px solid #1a5276;padding:4px 10px}
+.qrwrap{text-align:center;margin-top:13px;padding-top:12px;border-top:1px dashed rgba(22,90,180,.15)}
+.qrwrap img{width:140px;height:140px;display:inline-block;border:1px solid rgba(255,255,255,.9);border-radius:14px;box-shadow:0 6px 18px rgba(22,90,180,.12)}
+.qrcap{font-size:11.5px;color:var(--muted);margin-top:6px;line-height:1.7}
+.qrcap b{color:var(--blue)}
+.empty{text-align:center;color:var(--muted);padding:40px 16px;font-size:14px;border-radius:18px}
+.tag{display:inline-block;font-size:10.5px;color:#0b5bd3;background:rgba(22,119,255,.09);border-radius:6px;padding:0 6px;margin-right:4px;vertical-align:1px}
+.acts{margin-top:9px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;position:relative;z-index:1}
+.acts .go{padding:5px 12px}
+.go.alt{background:rgba(255,255,255,.7);color:#0b5bd3;border:1px solid rgba(22,119,255,.35);padding:4px 11px;box-shadow:inset 0 1px 0 #fff}
 .acts .go,.acts .nolink{margin-top:0}
-.act{font-size:12px;color:#1a5276;border:1px solid #d6e4ee;border-radius:7px;padding:4px 8px;cursor:pointer;user-select:none;background:#fff}
-.act.on{color:#b7860b;border-color:#f0d9a0;background:#fff8e8;font-weight:600}
-.card.flash{box-shadow:0 0 0 3px #d4a017}
-#next{background:#1a5276;color:#fff;border-radius:12px;padding:12px 14px;margin-bottom:10px}
-#next .nk{font-size:12px;color:#f3d27a;font-weight:700;letter-spacing:1px}
-#next .nrow{display:flex;align-items:center;gap:14px;margin-top:6px}
-#next .nnum{font-size:34px;font-weight:800;color:#f3d27a;line-height:1;flex:none}
-#next .nnum span{display:block;font-size:11px;font-weight:400;color:#d6e4ee;margin-top:4px}
-#next .nname{font-size:17px;font-weight:700}
-#next .nmeta{font-size:12px;color:#d6e4ee;line-height:1.6;margin-top:2px}
-#next .nx2{font-size:11.5px;color:#aac4d8;margin-top:8px}
-#next .nbtn{margin-top:9px;display:flex;gap:8px}
-#next .nbtn span{font-size:12px;border:1px solid rgba(255,255,255,.4);border-radius:7px;padding:4px 11px;cursor:pointer}
-.dlrow{background:#fff;border-radius:10px;padding:9px 12px;margin-bottom:7px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 4px rgba(26,82,118,.08);cursor:pointer}
-.dld{flex:none;width:62px;text-align:center;font-size:13px;font-weight:700;color:#1a5276}
+.act{font-size:12px;color:#0b5bd3;border:1px solid rgba(255,255,255,.9);border-radius:10px;padding:4px 9px;cursor:pointer;user-select:none;background:rgba(255,255,255,.62);box-shadow:0 2px 6px rgba(22,90,180,.06),inset 0 1px 0 #fff}
+.act.on{color:var(--gold-d);border-color:rgba(245,166,35,.45);background:rgba(255,243,214,.8);font-weight:600}
+.card.flash{box-shadow:0 0 0 3px var(--gold),var(--shadow)}
+#next{position:relative;overflow:hidden;color:#fff;border-radius:22px;padding:14px 16px;margin-bottom:12px;
+background:linear-gradient(135deg,rgba(22,119,255,.88),rgba(56,189,248,.80) 60%,rgba(45,212,191,.75));
+-webkit-backdrop-filter:blur(22px) saturate(180%);backdrop-filter:blur(22px) saturate(180%);
+border:1px solid rgba(255,255,255,.55);box-shadow:0 14px 36px rgba(22,119,255,.32),inset 0 1px 0 rgba(255,255,255,.6),inset 0 -1px 0 rgba(255,255,255,.2)}
+#next .nk{font-size:12px;color:#fff6d6;font-weight:700;letter-spacing:1px}
+#next .nrow{display:flex;align-items:center;gap:16px;margin-top:6px}
+#next .nnum{font-size:40px;font-weight:800;color:#fff;line-height:1;flex:none;text-shadow:0 2px 10px rgba(0,60,160,.25)}
+#next .nnum span{display:block;font-size:11px;font-weight:500;color:rgba(255,255,255,.85);margin-top:5px;text-shadow:none}
+#next .nname{font-size:18px;font-weight:800}
+#next .nmeta{font-size:12px;color:rgba(255,255,255,.9);line-height:1.6;margin-top:2px}
+#next .nx2{font-size:11.5px;color:rgba(255,255,255,.82);margin-top:9px}
+#next .nbtn{margin-top:10px;display:flex;gap:8px;position:relative;z-index:1}
+#next .nbtn span{font-size:12px;font-weight:600;border:1px solid rgba(255,255,255,.6);border-radius:12px;padding:5px 12px;cursor:pointer;
+background:rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)}
+.dlrow{border-radius:16px;padding:10px 13px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.dld{flex:none;width:62px;text-align:center;font-size:13px;font-weight:700;color:var(--blue)}
 .dld b{display:block;font-size:11px;color:#fff;border-radius:999px;padding:1px 0;margin-top:3px}
 .dlt{flex:1;min-width:0}
 .dln{font-size:13.5px;font-weight:600}
-.dlx{font-size:12px;color:#566573;margin-top:2px}
-.dla{color:#aab4bc;font-size:18px}
+.dlx{font-size:12px;color:#475569;margin-top:2px}
+.dla{color:#94a3b8;font-size:18px}
 .favbar{margin:4px 0 2px;text-align:center}
-.favbar span{display:inline-block;font-size:13px;font-weight:600;color:#fff;background:#d4a017;border-radius:8px;padding:7px 14px;cursor:pointer}
-#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:rgba(26,40,52,.92);color:#fff;font-size:13px;padding:9px 16px;border-radius:9px;max-width:88%;text-align:center;opacity:0;pointer-events:none;transition:all .25s;z-index:9}
+.favbar span{display:inline-block;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,#f5a623,#fbbf24);border-radius:12px;padding:7px 15px;cursor:pointer;box-shadow:0 6px 16px rgba(245,166,35,.35)}
+#toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:rgba(15,23,42,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:#fff;font-size:13px;padding:10px 16px;border-radius:14px;max-width:88%;text-align:center;opacity:0;pointer-events:none;transition:all .25s;z-index:9;border:1px solid rgba(255,255,255,.2)}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top:1px solid #e3e9ef;padding-top:10px}
+footer{margin-top:24px;font-size:11.5px;color:var(--muted);line-height:1.9;border-radius:18px;padding:12px 14px}
 </style>
 </head>
 <body>
@@ -112,10 +136,10 @@ footer{margin-top:24px;font-size:11.5px;color:#95a5a6;line-height:1.9;border-top
 <div id="list"></div>
 <div id="toast"></div>
 <footer>
-  <div style="font-size:13px;color:#1a5276;font-weight:600;margin-bottom:9px;line-height:1.75">📋 本表由《医学进行时》收集整理 · 如有会议更新或信息纠错，欢迎联系微信 <span style="color:#d4a017;font-weight:700">15810865775</span></div>
-  说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。每张卡片可「☆ 收藏」「📅 加入日历」（生成 .ics，含开幕前 7 天、截止前 3 天提醒；微信内需先点右上角在浏览器打开）和「📋 复制」会议信息转发到群里；「📮 截止节点」把所有待到的投稿/注册截止按日期汇总；第二排按亚专业方向筛选（按会议名称自动归类，仅供参考）。<br>
+  <div style="font-size:13px;color:#0b5bd3;font-weight:600;margin-bottom:9px;line-height:1.75">📋 本表由《医学进行时》收集整理 · 如有会议更新或信息纠错，欢迎联系微信 <span style="color:#c9820a;font-weight:700">15810865775</span></div>
+  说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（APAO / ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。每张卡片可「☆ 收藏」「📅 加入日历」（生成 .ics，含开幕前 7 天、截止前 3 天提醒；微信内需先点右上角在浏览器打开）和「📋 复制」会议信息转发到群里；「📮 截止节点」把所有待到的投稿/注册截止按日期汇总；第二排按亚专业方向筛选（按会议名称自动归类，仅供参考）。<br>
   国内会议日程整理自公开通知，多数没有独立官网，卡片上的「🔍 搜会议通知」会在公众号文章里检索该会议的正式通知；个别官网待核实的国际会议用「🔍 谷歌搜官网」；注册费为各官网当前公布价，货币与税费以官网结算为准。本表只保留未闭幕的会议，以 2027 年为主；CCOS、COA、Vision China 等国内 2027 会议尚未公布，公布后补充。一切以会议官方通知为准。<br>
-  <span id="busuanzi_container_site_pv" style="display:none">📈 总访问 <b id="busuanzi_value_site_pv" style="color:#1a5276"></b> 次</span><span id="busuanzi_container_site_uv" style="display:none">　·　访客 <b id="busuanzi_value_site_uv" style="color:#1a5276"></b> 人</span>
+  <span id="busuanzi_container_site_pv" style="display:none">📈 总访问 <b id="busuanzi_value_site_pv" style="color:#0b5bd3"></b> 次</span><span id="busuanzi_container_site_uv" style="display:none">　·　访客 <b id="busuanzi_value_site_uv" style="color:#0b5bd3"></b> 人</span>
 </footer>
 </div>
 
@@ -145,7 +169,7 @@ var CONFS=[
   sub:"论文/壁报/Workshop 摘要已于2026年9月22日截止；2026年7月后入学的 Fellow 须9月22日前提交题目与作者，完整摘要可延至10月29日；11月下旬通知结果",
   hots:[{d:"2026-10-29",t:"Fellow 完整摘要提交截止"}]},
  {s:"2027-03-19",e:"2027-03-23",a:"NANOS 2027",n:"第53届北美神经眼科学会年会（NANOS 2027）",p:"美国圣迭戈 · Sheraton San Diego",u:"https://www.nanosweb.org/nanos-2027-san-diego/"},
- {s:"2027-03-18",e:"2027-03-21",a:"APAO 2027",n:"第42届亚太眼科学会大会（APAO 2027）",p:"新加坡 · Suntec 会展中心",u:"https://2027.apaophth.org/",
+ {s:"2027-03-18",e:"2027-03-21",a:"APAO 2027",n:"第42届亚太眼科学会大会（APAO 2027）",p:"新加坡 · Suntec 会展中心",u:"https://2027.apaophth.org/",core:1,
   sub:"摘要已截止（延长至2026年9月16日）",
   hots:[{d:"2026-10-12",t:"早鸟注册截止（最多省30%）"},{d:"2027-02-25",t:"Advance 价截止，此后 Standard 价"}],
   reg:"早鸟价 US$96–530，按参会身份及国家/地区 GDP 分档；10月13日–2027年2月25日 Advance 价，2月26日起 Standard 价；签证邀请函需完成缴费后申请",
@@ -221,9 +245,9 @@ function pd(s){var a=s.split("-");return new Date(+a[0],a[1]-1,+a[2]);}
 var now=new Date(), today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
 function st(c){var s=pd(c.s),e=pd(c.e);if(today>e)return{k:"past"};if(today>=s)return{k:"now",day:Math.round((today-s)/864e5)+1,len:Math.round((e-s)/864e5)+1};return{k:"future",days:Math.round((s-today)/864e5)};}
 function badge(x){
- if(x.k==="past")return '<span class="badge" style="background:#95a5a6">已闭幕</span>';
- if(x.k==="now")return '<span class="badge" style="background:#27ae60">进行中</span>';
- var col=x.days<=45?"#d4a017":"#2e86c1";
+ if(x.k==="past")return '<span class="badge" style="background:#94a3b8">已闭幕</span>';
+ if(x.k==="now")return '<span class="badge" style="background:#10b981">进行中</span>';
+ var col=x.days<=45?"linear-gradient(135deg,#f5a623,#fbbf24)":"linear-gradient(135deg,#1677ff,#38bdf8)";
  return '<span class="badge" style="background:'+col+'">距开幕 '+x.days+' 天</span>';
 }
 function dr(c){var s=pd(c.s),e=pd(c.e);
@@ -371,7 +395,7 @@ function deadlines(q){
  var h="",lm="";
  items.forEach(function(it){var k=it.d.getFullYear()+"年"+(it.d.getMonth()+1)+"月";
   if(k!==lm){h+='<div class="month">'+k+'</div>';lm=k;}
-  var col=it.left<=7?"#b03a2e":it.left<=30?"#d4a017":"#2e86c1";
+  var col=it.left<=7?"#ef4444":it.left<=30?"#f5a623":"#1677ff";
   h+='<div class="dlrow" onclick="jump('+it.i+')"><div class="dld">'+md(it.d)+'<b style="background:'+col+'">'+(it.left?it.left+" 天":"今天")+'</b></div>'
    +'<div class="dlt"><div class="dln">'+(it.c.core?"⭐ ":"")+(it.c.a||it.c.n)+'</div><div class="dlx">'+it.t+'</div></div><div class="dla">›</div></div>';
  });

@@ -187,6 +187,7 @@ module.exports = {
    "n": "第42届亚太眼科学会大会（APAO 2027）",
    "p": "新加坡 · Suntec 会展中心",
    "u": "https://2027.apaophth.org/",
+   "core": 1,
    "sub": "摘要已截止（延长至2026年9月16日）",
    "hots": [
     {
