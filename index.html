@@ -111,6 +111,31 @@ background:rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filt
 .favbar span{display:inline-block;font-size:13px;font-weight:600;color:#fff;background:linear-gradient(135deg,#f5a623,#fbbf24);border-radius:12px;padding:7px 15px;cursor:pointer;box-shadow:0 6px 16px rgba(245,166,35,.35)}
 #toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:rgba(15,23,42,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:#fff;font-size:13px;padding:10px 16px;border-radius:14px;max-width:88%;text-align:center;opacity:0;pointer-events:none;transition:all .25s;z-index:9;border:1px solid rgba(255,255,255,.2)}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* 合作会议：金色玻璃描边与光晕（不加文字标识） */
+.card.host{background:linear-gradient(135deg,rgba(255,251,240,.78),rgba(255,255,255,.55));border:1.5px solid rgba(245,166,35,.65);
+box-shadow:0 0 0 3px rgba(251,191,36,.14),0 10px 30px rgba(245,166,35,.22),inset 0 1px 0 rgba(255,255,255,.95)}
+.card.host::before{background:linear-gradient(180deg,#f59e0b,#fbbf24 50%,#fde68a);width:5px;box-shadow:0 0 10px rgba(245,158,11,.55)}
+.card.host .dt .d{color:#d97706}
+.go.gold{background:linear-gradient(135deg,#e08600,#f5a623 55%,#fbbf24);box-shadow:0 4px 14px rgba(245,166,35,.4),inset 0 1px 0 rgba(255,255,255,.5);text-shadow:0 1px 2px rgba(120,60,0,.25)}
+.act.host{color:#b45309;border-color:rgba(245,166,35,.45);background:rgba(255,247,230,.8)}
+#sheet{position:fixed;inset:0;z-index:20;background:rgba(15,23,42,.28);display:none;align-items:flex-end;justify-content:center}
+#sheet.show{display:flex}
+#sheetBody{width:100%;max-width:520px;margin:0 10px 12px;border-radius:24px;padding:18px 18px 12px;background:rgba(255,255,255,.78);
+-webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);border:1px solid rgba(255,255,255,.9);
+box-shadow:0 20px 50px rgba(15,40,90,.25),inset 0 1px 0 #fff;animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.shh{font-size:17px;font-weight:800;color:var(--ink)}
+.shn{font-size:12.5px;color:var(--muted);margin:4px 0 10px;line-height:1.5}
+.shr{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid rgba(22,90,180,.08);font-size:14px}
+.shr span:first-child{color:var(--muted);width:48px;flex:none}
+.shr b{flex:1;font-weight:700;color:var(--ink)}
+.shb{font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(135deg,#1677ff,#38bdf8);border-radius:10px;padding:5px 12px;cursor:pointer;text-decoration:none}
+.shq{text-align:center;padding:10px 0;border-top:1px solid rgba(22,90,180,.08);font-size:12px;color:var(--muted)}
+.shq img{width:150px;height:150px;border-radius:12px;display:block;margin:0 auto 6px}
+.sht{font-size:11.5px;color:var(--muted);padding:8px 0 2px;border-top:1px solid rgba(22,90,180,.08)}
+.shgo{display:block;text-align:center;margin-top:12px;font-size:14px;font-weight:700;color:#fff;text-decoration:none;border-radius:14px;padding:11px 0;
+background:linear-gradient(135deg,#e08600,#f5a623 55%,#fbbf24);box-shadow:0 6px 18px rgba(245,166,35,.4)}
+.shx{text-align:center;font-size:13.5px;color:var(--muted);padding:12px 0 2px;cursor:pointer}
 footer{margin-top:24px;font-size:11.5px;color:var(--muted);line-height:1.9;border-radius:18px;padding:12px 14px}
 </style>
 </head>
@@ -135,6 +160,7 @@ footer{margin-top:24px;font-size:11.5px;color:var(--muted);line-height:1.9;borde
 <div id="stats"></div>
 <div id="list"></div>
 <div id="toast"></div>
+<div id="sheet" onclick="if(event.target===this)closeContact()"><div id="sheetBody"></div></div>
 <footer>
   <div style="font-size:13px;color:#0b5bd3;font-weight:600;margin-bottom:9px;line-height:1.75">📋 本表由《医学进行时》收集整理 · 如有会议更新或信息纠错，欢迎联系微信 <span style="color:#c9820a;font-weight:700">15810865775</span></div>
   说明：「距开幕 / 还剩 X 天」按你打开页面的当天自动计算，过期节点自动收起；⭐ 为重点国际会议（APAO / ARVO / APVRS / EURETINA / AAO）。「🔥 我常看的」会记住你在本设备点开过的会议官网，把你最常看的自动排到前面——数据只存在你自己的浏览器里，不上传、不共享。每张卡片可「☆ 收藏」「📅 加入日历」（生成 .ics，含开幕前 7 天、截止前 3 天提醒；微信内需先点右上角在浏览器打开）和「📋 复制」会议信息转发到群里；「📮 截止节点」把所有待到的投稿/注册截止按日期汇总；第二排按亚专业方向筛选（按会议名称自动归类，仅供参考）。<br>
@@ -146,11 +172,11 @@ footer{margin-top:24px;font-size:11.5px;color:var(--muted);line-height:1.9;borde
 <script>
 var CONFS=[
  {s:"2026-11-05",e:"2026-11-08",n:"中华中医药学会眼科分会第二十五次学术年会",p:"广东深圳",u:"https://www.cacm.org.cn/2026/10/15/41249/",cn:1},
- {s:"2026-11-06",e:"2026-11-07",n:"山东省眼科学会第一届眼科学术大会",p:"山东济南",u:"https://mm.sciconf.cn/cn/minisite/index/40091",cn:1},
+ {host:1,s:"2026-11-06",e:"2026-11-07",n:"山东省眼科学会第一届眼科学术大会",p:"山东济南",u:"https://mm.sciconf.cn/cn/minisite/index/40091",cn:1},
  {s:"2026-11-06",e:"2026-11-09",a:"RANZCO 2026",n:"第57届澳大利亚和新西兰皇家眼科医师学院年会（RANZCO 2026）",p:"新西兰奥克兰 · NZICC 国际会议中心",u:"https://ranzco2026.com/",note:"约1800名代表；十年来首次在新西兰举办"},
  {s:"2026-11-07",e:"2026-11-07",n:"2026年同仁儿童眼底病论坛",p:"中国北京",u:"",cn:1},
  {s:"2026-11-13",e:"2026-11-15",n:"2026眼健康创新论坛暨中日医学科技交流协会眼科分会年会",p:"中国北京",u:"",cn:1},
- {s:"2026-11-14",e:"2026-11-15",n:"2026年求是眼科学术大会暨眼科高质量发展与全域基层眼健康提升交流会",p:"浙江杭州",u:"https://mm.sciconf.cn/cn/minisite/index/40328",cn:1,note:"中国民族卫生协会眼科学分会、浙江大学医学院附属第一医院承办"},
+ {host:1,s:"2026-11-14",e:"2026-11-15",n:"2026年求是眼科学术大会暨眼科高质量发展与全域基层眼健康提升交流会",p:"浙江杭州",u:"https://mm.sciconf.cn/cn/minisite/index/40328",cn:1,note:"中国民族卫生协会眼科学分会、浙江大学医学院附属第一医院承办"},
  {s:"2026-11-20",e:"2026-11-22",a:"Shanghai Vitrectomy 2026",n:"2026年第二届上海玻璃体手术论坛（Shanghai Vitrectomy 2026）暨小儿视网膜疾病诊治新进展继续教育学习班",p:"中国上海",u:"",cn:1},
  {s:"2026-11-26",e:"2026-11-29",n:"四川省医学会第二十六次眼科学术会议",p:"四川西昌",u:"",cn:1},
  {s:"2026-11-27",e:"2026-11-29",n:"2026北京医学会眼科学分会学术年会暨第十二届同仁眼科新技术交流会",p:"中国北京",u:"",cn:1},
@@ -161,7 +187,7 @@ var CONFS=[
  {s:"2026-12-04",e:"2026-12-06",a:"Eye Care CHINA 2026",n:"第十二届西湖国际眼健康学术大会暨2026白内障及屈光手术学术大会（Eye Care CHINA 2026）",p:"浙江杭州 · 杭州国际博览中心二期",u:"",cn:1},
   {s:"2026-12-25",e:"2026-12-26",n:"天津医科大学总医院眼科GX峰会",p:"中国天津",u:"",cn:1},
 
- {s:"2027-01-07",e:"2027-01-09",n:"2027“海上之光”眼视光学与视觉科学学术会议暨第十五届“关爱近视·微笑”学术交流会",p:"中国上海",u:"http://smilevision.com.cn",cn:1},
+ {host:1,s:"2027-01-07",e:"2027-01-09",n:"2027“海上之光”眼视光学与视觉科学学术会议暨第十五届“关爱近视·微笑”学术交流会",p:"中国上海",u:"http://smilevision.com.cn",cn:1},
  {s:"2027-01-16",e:"2027-01-22",a:"Hawaiian Eye & Retina 2027",n:"夏威夷眼科与视网膜大会（Hawaiian Eye & Retina 2027）",p:"美国夏威夷毛伊岛 · Grand Wailea",u:"",g:"Hawaiian Eye and Retina 2027",note:"会场另有第三方列为 Hilton Waikoloa Village，以官网为准"},
  {s:"2027-02-03",e:"2027-02-06",a:"GSLS 2027",n:"全球特殊镜片研讨会（Global Specialty Lens Symposium 2027）",p:"美国拉斯维加斯 · Paris Las Vegas",u:"https://clspectrum.com/news/2026/gsls-2027-registration-now-open/",note:"角膜塑形、巩膜镜等特殊接触镜与近视防控；注册已开放"},
  {s:"2027-02-26",e:"2027-02-27",a:"EURETINA SFM 2027",n:"EURETINA 专题会议 2027：遗传性视网膜疾病（Special Focus Meeting – Inherited Retinal Diseases）",p:"斯洛文尼亚卢布尔雅那",u:"https://euretina.org/sfm-2027/",note:"会场待官宣"},
@@ -185,17 +211,17 @@ var CONFS=[
   note:"4月2日为 ASCRS Subspecialty Day"},
  {s:"2027-04-08",e:"2027-04-10",a:"COOC 2027",n:"第二十七届国际眼科学学术会议暨第二十七届国际视光学学术会议（COOC 2027）",p:"中国上海",u:"http://cooc.org.cn/",cn:1,note:"第一轮通知标题为4月8–10日，同期展会4月9–10日；场馆待官宣（往届为上海跨国采购会展中心）"},
  {s:"2027-04-15",e:"2027-04-17",a:"APSPOS 2027",n:"第四届亚太斜视与小儿眼科学会大会暨2027年全国斜视与小儿眼科大会（APSPOS & CAPOS 2027）",p:"中国天津 · 香格里拉大酒店",u:"",cn:1,note:"APSPOS 与中国小儿眼科与斜视学组（CAPOS）联合举办，AAPOS 国际专题研讨参与"},
- {s:"2027-04-15",e:"2027-04-17",a:"Retina China 2027",n:"第二十八届眼底病论坛暨国际视网膜研讨会（Retina China 2027）",p:"江苏无锡 · 无锡国际会议中心",u:"http://www.cofds.com.cn",cn:1},
+ {host:1,s:"2027-04-15",e:"2027-04-17",a:"Retina China 2027",n:"第二十八届眼底病论坛暨国际视网膜研讨会（Retina China 2027）",p:"江苏无锡 · 无锡国际会议中心",u:"http://www.cofds.com.cn",cn:1},
  {s:"2027-04-15",e:"2027-04-18",a:"JOS 2027",n:"第131届日本眼科学会总会（JOS 2027）",p:"日本札幌",u:"https://convention.jtbcom.co.jp/131jos/en/index.html",note:"北海道大学眼科承办，会长石田晋"},
  {s:"2027-04-20",e:"2027-04-23",a:"WGC 2027",n:"第12届世界青光眼大会（WGC 2027）",p:"日本京都 · 国立京都国际会馆",u:"https://worldglaucomacongress.org/",
   sub:"仅限在线平台投稿，英文结构式摘要 ≤2500 字符；11月底前通知录用（口头/壁报）",
   hots:[{d:"2026-10-19",t:"摘要投稿截止（23:59 CEST）"},{d:"2027-01-18",t:"早鸟注册截止"},{d:"2027-03-15",t:"常规注册截止"}],
   reg:"注册咨询 WGC-registration@mci-group.com"},
- {s:"2027-04-23",e:"2027-04-25",n:"2027角膜病学术交流会暨第二十六届角膜及眼表疾病学术大会、第十九届角膜屈光手术年会",p:"山东济南",u:"http://www.cornea.com.cn/",cn:1},
+ {host:1,s:"2027-04-23",e:"2027-04-25",n:"2027角膜病学术交流会暨第二十六届角膜及眼表疾病学术大会、第十九届角膜屈光手术年会",p:"山东济南",u:"http://www.cornea.com.cn/",cn:1},
  {s:"2027-05-02",e:"2027-05-06",a:"ARVO 2027",n:"美国视觉与眼科研究协会年会（ARVO 2027）",p:"美国圣迭戈",u:"https://www.arvo.org/annual-meeting",core:1,
   sub:"投稿须持有2027年度 ARVO 会员（在线入会/续费须在12月4日17:00前完成）；2027年1月14日通知录用",
   hots:[{d:"2026-10-16",t:"摘要投稿开放"},{d:"2026-12-04",t:"摘要投稿截止"}]},
- {s:"2027-05-14",e:"2027-05-16",n:"2027干眼康复学术年会暨第十届干眼西湖学术交流会议、干眼诊疗中心基层规范化建设培训",p:"浙江杭州 · 杭州国际博览中心二期",u:"http://www.dryeye.org.cn",cn:1},
+ {host:1,s:"2027-05-14",e:"2027-05-16",n:"2027干眼康复学术年会暨第十届干眼西湖学术交流会议、干眼诊疗中心基层规范化建设培训",p:"浙江杭州 · 杭州国际博览中心二期",u:"http://www.dryeye.org.cn",cn:1},
  {s:"2027-05-13",e:"2027-05-15",a:"WCPOS VI",n:"第6届世界小儿眼科与斜视大会（WSPOS WCPOS VI）",p:"墨西哥坎昆",u:"https://wspos.org/category/wcpos-vi/"},
  {s:"2027-05-14",e:"2027-05-16",a:"EuCornea 2027",n:"欧洲角膜与眼表疾病学会大会（EuCornea 2027）",p:"匈牙利布达佩斯",u:"",g:"EuCornea Congress 2027 Budapest",note:"日期地点仅见第三方会议日历，待官网确认"},
  {s:"2027-05-20",e:"2027-05-23",a:"ASOPRS Spring 2027",n:"美国眼整形与重建外科学会春季会议（ASOPRS 2027 Spring Meeting）",p:"美国查尔斯顿 · Charleston Place",u:"https://www.asoprs.org/future-and-past-symposia",note:"仅限会员参加"},
@@ -294,7 +320,7 @@ function ymd(d){return d.getFullYear()+("0"+(d.getMonth()+1)).slice(-2)+("0"+d.g
 function icsEsc(t){return String(t).replace(/<[^>]+>/g,"").replace(/([,;\\])/g,"\\$1").replace(/\n/g,"\\n");}
 function icsEvents(c){
  var ev=[],stamp=ymd(today)+"T000000Z",e1=pd(c.e);e1.setDate(e1.getDate()+1);
- var desc=[c.sub?"投稿："+c.sub:"",c.reg?"注册："+c.reg:"",c.note||"",c.u?"官网："+c.u:"","—— 来自《医学进行时》眼科会议速查"].filter(Boolean).join("\n");
+ var desc=[c.sub?"投稿："+c.sub:"",c.reg?"注册："+c.reg:"",c.note||"",c.u?"官网："+c.u:"",c.host&&contactOf(c).wx?"会务微信："+contactOf(c).wx:"",c.host&&contactOf(c).tel?"会务电话："+contactOf(c).tel:"","—— 来自《医学进行时》眼科会议速查"].filter(Boolean).join("\n");
  ev.push(["BEGIN:VEVENT","UID:"+ymd(pd(c.s))+"-"+encodeURIComponent(c.a||c.n).slice(0,40)+"@eyeconf","DTSTAMP:"+stamp,
   "DTSTART;VALUE=DATE:"+ymd(pd(c.s)),"DTEND;VALUE=DATE:"+ymd(e1),"SUMMARY:"+icsEsc(c.a||c.n),"LOCATION:"+icsEsc(c.p),
   "DESCRIPTION:"+icsEsc(c.n+"\n"+desc),(c.u?"URL:"+c.u:""),
@@ -328,10 +354,29 @@ function copyInfo(i){
  (c.hots||[]).forEach(function(h){var d=pd(h.d);if(d>=today)L.push("⏰ "+md(d)+" "+h.t);});
  if(c.sub)L.push("📝 投稿："+c.sub);
  if(c.reg)L.push("🎫 注册："+c.reg);
- if(c.u)L.push("🔗 "+c.u);
+ if(c.host){var k=contactOf(c);if(signupOf(c))L.push("✍️ 报名："+signupOf(c));if(k.tel)L.push("☎️ 会务电话："+k.tel);if(k.wx)L.push("💬 会务微信："+k.wx);}
+ else if(c.u)L.push("🔗 "+c.u);
  L.push("—— 《医学进行时》眼科会议速查 "+location.href.split("#")[0]);
  copyText(L.join("\n"));
 }
+
+/* ---------- 会务咨询（host:1 的会议） ---------- */
+// 默认会务联系方式；单场会议可用 contact:{wx,tel,qr,name} 覆盖，报名链接用 signup 字段（缺省用官网）
+var HOST_CONTACT={wx:"15810865775",tel:"",qr:"",name:""};
+function contactOf(c){var o={},k;for(k in HOST_CONTACT)o[k]=HOST_CONTACT[k];if(c.contact)for(k in c.contact)o[k]=c.contact[k];return o;}
+function signupOf(c){return c.signup||c.u||"";}
+function openContact(i){
+ var c=CONFS[i],k=contactOf(c),h='<div class="shh">会务咨询</div><div class="shn">'+(c.a||c.n)+'</div>';
+ if(k.name)h+='<div class="shr"><span>联系人</span><b>'+k.name+'</b></div>';
+ if(k.tel)h+='<div class="shr"><span>电话</span><b>'+k.tel+'</b><a class="shb" href="tel:'+k.tel+'">拨打</a></div>';
+ if(k.wx)h+='<div class="shr"><span>微信</span><b>'+k.wx+'</b><span class="shb" onclick="copyText(\''+k.wx+'\')">复制</span></div>';
+ if(k.qr)h+='<div class="shq"><img src="'+k.qr+'" alt="会务二维码"><div>长按识别二维码</div></div>';
+ h+='<div class="sht">添加微信时请备注「会议名称＋姓名＋单位」</div>';
+ if(signupOf(c))h+='<a class="shgo" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a>';
+ h+='<div class="shx" onclick="closeContact()">关闭</div>';
+ document.getElementById("sheetBody").innerHTML=h;document.getElementById("sheet").className="show";
+}
+function closeContact(){document.getElementById("sheet").className="";}
 
 /* ---------- 卡片 ---------- */
 function card(c,cnt){
@@ -342,7 +387,7 @@ function card(c,cnt){
  if(c.reg)ex.push("🎫 注册："+c.reg);
  if(c.note)ex.push("ℹ️ "+c.note);
  hl.off.forEach(function(o){ex.push('<span class="off">✕ '+o+'</span>');});
- return '<div class="card'+(c.core?" core":"")+(x.k==="past"?" past":"")+'" id="c'+i+'">'
+ return '<div class="card'+(c.core?" core":"")+(c.host?" host":"")+(x.k==="past"?" past":"")+'" id="c'+i+'">'
   +'<div class="dt"><div class="m">'+(s.getMonth()+1)+'月</div><div class="d">'+s.getDate()+'</div><div class="len">'+dr(c)+'</div></div>'
   +'<div class="bd"><div class="nm">'+(c.core?'<span class="star">⭐ </span>':"")+c.n+badge(x)+(cnt?' <span class="hot">🔥 '+cnt+' 次</span>':"")+'</div>'
   +'<div class="meta">📍 '+c.p+'　'+dirsOf(c).map(function(d){return '<span class="tag">'+d+'</span>';}).join("")+'</div>'
@@ -350,7 +395,8 @@ function card(c,cnt){
   +(ex.length?'<div class="ex">'+ex.join("<br>")+'</div>':"")
   +feeBlock(c)
   +'<div class="acts">'
-  +(c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':(c.cn?'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent(c.n.replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>'
+  +(c.host&&signupOf(c)?'<a class="go gold" href="'+signupOf(c)+'" target="_blank" rel="noopener" onclick="bump('+i+')">报名参会 ↗</a><span class="act host" onclick="openContact('+i+')">💬 会务咨询</span>'
+   :c.u?'<a class="go" href="'+c.u+'" target="_blank" rel="noopener" onclick="bump('+i+')">官网 ↗</a>':(c.cn?'<a class="go alt" href="https://weixin.sogou.com/weixin?type=2&query='+encodeURIComponent(c.n.replace(/（.*?）/g,""))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="该会议暂无独立官网，搜索公众号会议通知">🔍 搜会议通知</a>'
    :'<a class="go alt" href="https://www.google.com/search?q='+encodeURIComponent(c.g||((c.a||c.n)+" official website"))+'" target="_blank" rel="noopener" onclick="bump('+i+')" title="官网待核实，用谷歌搜索">🔍 谷歌搜官网</a>'))
   +'<span class="act'+(fav?" on":"")+'" onclick="toggleFav('+i+')">'+(fav?"★ 已收藏":"☆ 收藏")+'</span>'
   +(x.k!=="past"?'<span class="act" onclick="addCal('+i+')">📅 日历</span>':"")
