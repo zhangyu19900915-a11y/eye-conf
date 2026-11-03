@@ -1,6 +1,6 @@
 // 由 scripts/build-mp-data.js 从 index.html 自动生成，请勿手改
 module.exports = {
- "updated": "2026-10-29",
+ "updated": "2026-11-03",
  "list": [
   {
    "s": "2026-11-05",
@@ -541,6 +541,16 @@ module.exports = {
    "n": "第25届世界视网膜大会（Retina World Congress 2027）",
    "p": "美国劳德代尔堡",
    "u": "https://retinaworldcongress.org/"
+  },
+  {
+   "s": "2027-05-27",
+   "e": "2027-05-30",
+   "a": "COA 2027",
+   "n": "第二十一届中国医师协会眼科医师分会年会（COA 2027）",
+   "p": "广东广州 · 白云国际会议中心",
+   "u": "",
+   "cn": 1,
+   "note": "线下举办"
   },
   {
    "s": "2027-06-03",
