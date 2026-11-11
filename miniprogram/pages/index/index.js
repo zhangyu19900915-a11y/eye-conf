@@ -5,7 +5,7 @@ const FILTERS = ['即将召开', '📮 截止节点', '☆ 我的收藏', '全�
 
 Page({
   data: {
-    filters: FILTERS, dirs: C.DIR_NAMES, f: '即将召开', d: '全部方向', q: '',
+    filters: FILTERS, dirs: [], f: '即将召开', d: [], q: '', // d：已选方向，可多选，空=全部
     next: null, hot: [], groups: [], dlGroups: [], stats: '', updated: C.updated()
   },
 
@@ -16,7 +16,9 @@ Page({
   refresh() {
     const t = C.today(), favs = S.getFavs(), q = this.data.q.trim().toLowerCase();
     const { f, d } = this.data;
-    const passDir = c => d === '全部方向' || C.dirsOf(c).indexOf(d) >= 0;
+    const passDir = c => !d.length || C.dirsOf(c).some(x => d.indexOf(x) >= 0);
+    const dirs = C.DIR_NAMES.map(n => ({ name: n, on: n === '全部方向' ? !d.length : d.indexOf(n) >= 0 }));
+    this.setData({ dirs });
     const passQ = c => !q || (c.n + ' ' + c.p + ' ' + (c.a || '')).toLowerCase().indexOf(q) >= 0;
 
     const hot = C.deadlines(t).filter(x => x.left <= 30);
@@ -49,7 +51,13 @@ Page({
   },
 
   onFilter(e) { this.setData({ f: e.currentTarget.dataset.v }); this.refresh(); },
-  onDir(e) { this.setData({ d: e.currentTarget.dataset.v }); this.refresh(); },
+  onDir(e) {
+    const v = e.currentTarget.dataset.v;
+    let d = this.data.d.slice();
+    if (v === '全部方向') d = [];
+    else { const k = d.indexOf(v); if (k >= 0) d.splice(k, 1); else d.push(v); }
+    this.setData({ d }); this.refresh();
+  },
   onSearch(e) { this.setData({ q: e.detail.value }); this.refresh(); },
   open(e) { wx.navigateTo({ url: '/pages/detail/detail?id=' + e.currentTarget.dataset.id }); },
 

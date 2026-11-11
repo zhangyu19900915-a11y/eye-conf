@@ -28,7 +28,7 @@
       <view wx:for="{{filters}}" wx:key="*this" class="chip {{f === item ? 'on' : ''}}" bindtap="onFilter" data-v="{{item}}">{{item}}</view>
     </scroll-view>
     <scroll-view scroll-x class="chips dirs" enhanced show-scrollbar="{{false}}">
-      <view wx:for="{{dirs}}" wx:key="*this" class="chip {{d === item ? 'on' : ''}}" bindtap="onDir" data-v="{{item}}">{{item}}</view>
+      <view wx:for="{{dirs}}" wx:key="name" class="chip {{item.on ? 'on' : ''}}" bindtap="onDir" data-v="{{item.name}}">{{item.name}}</view>
     </scroll-view>
   </view>
   <view class="stats">{{stats}}</view>
